@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 60" fill="none">
+  <defs>
+    <linearGradient id="ofwm" x1="0" y1="50" x2="60" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0.1" stop-color="#80074D"></stop>
+      <stop offset="1" stop-color="#FB41AA"></stop>
+    </linearGradient>
+  </defs>
+  <circle cx="28" cy="30" r="24" fill="url(#ofwm)"></circle>
+  <text x="28" y="37" text-anchor="middle" font-family="'Space Grotesk', system-ui" font-weight="700" font-size="20" fill="#fff" letter-spacing="-0.5">OF</text>
+  <text x="64" y="38" font-family="'Space Grotesk', system-ui" font-weight="600" font-size="24" fill="currentColor" letter-spacing="-0.5">Ops Forward</text>
+</svg>
