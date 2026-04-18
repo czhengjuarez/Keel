@@ -1,4 +1,6 @@
 import { chromium } from 'playwright';
+import { mkdir } from 'node:fs/promises';
+import { dirname } from 'node:path';
 
 const pages = [
   '/',
@@ -15,6 +17,10 @@ const pages = [
 
 const baseUrl = process.env.BASE_URL || 'http://127.0.0.1:4321';
 
+function screenshotPathForRoute(routePath) {
+  return `./.visual-smoke${routePath === '/' ? '/home' : routePath}.png`;
+}
+
 async function run() {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
@@ -25,7 +31,9 @@ async function run() {
     if (!response || response.status() >= 400) {
       throw new Error(`Visual smoke failed for ${url} (status ${response?.status() ?? 'no-response'})`);
     }
-    await page.screenshot({ path: `./.visual-smoke${path === '/' ? '/home' : path}.png`, fullPage: true });
+    const screenshotPath = screenshotPathForRoute(path);
+    await mkdir(dirname(screenshotPath), { recursive: true });
+    await page.screenshot({ path: screenshotPath, fullPage: true });
   }
 
   await browser.close();
