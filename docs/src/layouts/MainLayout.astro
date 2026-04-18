@@ -1,0 +1,27 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import SidebarNav from '../components/SidebarNav.tsx';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const pathname = Astro.url.pathname;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="site-layout">
+    <Header />
+    <div class="site-body">
+      <aside class="site-sidebar">
+        <SidebarNav currentPath={pathname} client:load />
+      </aside>
+      <main class="site-main">
+        <slot />
+      </main>
+    </div>
+  </div>
+</BaseLayout>
