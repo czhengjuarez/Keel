@@ -188,10 +188,37 @@ a:hover { text-decoration: underline; }
 /* ── Sidebar nav ── */
 .sidebar-nav { padding: 20px 12px; }
 .sidebar-group { margin-bottom: 20px; }
+.sidebar-group__toggle {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 4px 10px;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.sidebar-group__toggle:hover { background: var(--of-bg-recessed); border-radius: 7px; }
+.sidebar-group__toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--of-ring);
+  border-radius: 7px;
+}
 .sidebar-group__title {
   font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
   font-weight: 600; color: var(--of-fg-subtle);
-  padding: 4px 10px; margin-bottom: 2px;
+}
+.sidebar-group__chevron {
+  color: var(--of-fg-subtle);
+  font-size: 11px;
+  line-height: 1;
+  transition: transform var(--of-dur-fast) var(--of-ease-out);
+}
+.sidebar-group__chevron.is-collapsed { transform: rotate(-90deg); }
+.sidebar-group__items {
+  display: grid;
+  gap: 2px;
 }
 .sidebar-item {
   display: block; padding: 6px 10px; border-radius: 7px;
@@ -597,6 +624,9 @@ a:hover { text-decoration: underline; }
   flex-direction: column;
   gap: 10px;
 }
+.of-popover[hidden] {
+  display: none;
+}
 .of-popover__title {
   font-size: 12px;
   text-transform: uppercase;
@@ -655,6 +685,24 @@ a:hover { text-decoration: underline; }
   padding: 6px 8px;
   font-size: 12px;
   white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-2px);
+  pointer-events: none;
+  transition: opacity var(--of-dur-fast), transform var(--of-dur-fast), visibility var(--of-dur-fast);
+}
+
+.of-tooltip-demo {
+  position: relative;
+}
+
+.of-tooltip-demo:hover .of-tooltip-demo__bubble,
+.of-tooltip-demo:focus-within .of-tooltip-demo__bubble,
+.of-tooltip-demo__trigger:hover + .of-tooltip-demo__bubble,
+.of-tooltip-demo__trigger:focus-visible + .of-tooltip-demo__bubble {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 @keyframes of-spin {

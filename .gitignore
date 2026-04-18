@@ -1,0 +1,6 @@
+node_modules/
+**/node_modules/
+
+packages/keel/dist/
+docs/dist/
+docs/.visual-smoke/

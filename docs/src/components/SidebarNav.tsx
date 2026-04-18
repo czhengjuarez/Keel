@@ -1,5 +1,11 @@
+import { useEffect, useRef, useState } from 'react';
+
+const SCROLL_STORAGE_KEY = 'keel.docs.sidebar.scrollTop';
+const COLLAPSE_STORAGE_KEY = 'keel.docs.sidebar.collapsed';
+
 const NAV = [
   {
+    id: 'getting-started',
     title: 'Getting started',
     items: [
       { label: 'Introduction',   href: '/' },
@@ -18,6 +24,7 @@ const NAV = [
     ],
   },
   {
+    id: 'foundation',
     title: 'Foundation',
     items: [
       { label: 'Colors',         href: '/colors' },
@@ -27,6 +34,7 @@ const NAV = [
     ],
   },
   {
+    id: 'components',
     title: 'Components',
     items: [
       { label: 'Badge',        href: '/components/badge' },
@@ -54,6 +62,7 @@ const NAV = [
     ],
   },
   {
+    id: 'brand',
     title: 'Brand',
     items: [
       { label: 'Voice & tone', href: '/brand/voice-and-tone' },
@@ -69,25 +78,76 @@ interface Props {
 export default function SidebarNav({ currentPath }: Props) {
   const normalize = (p: string) => p.replace(/\/$/, '') || '/';
   const current = normalize(currentPath);
+  const navRef = useRef<HTMLElement | null>(null);
+  const [collapsedGroups, setCollapsedGroups] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem(COLLAPSE_STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw) as Record<string, boolean>;
+      setCollapsedGroups(parsed);
+    } catch {
+      setCollapsedGroups({});
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(COLLAPSE_STORAGE_KEY, JSON.stringify(collapsedGroups));
+  }, [collapsedGroups]);
+
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+    const scrollContainer = (nav.closest('.site-sidebar') as HTMLElement | null) ?? nav;
+
+    const savedTop = Number(window.localStorage.getItem(SCROLL_STORAGE_KEY) || '0');
+    if (savedTop > 0) scrollContainer.scrollTop = savedTop;
+
+    const onScroll = () => {
+      window.localStorage.setItem(SCROLL_STORAGE_KEY, String(scrollContainer.scrollTop));
+    };
+
+    scrollContainer.addEventListener('scroll', onScroll, { passive: true });
+    return () => scrollContainer.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const toggleGroup = (groupId: string) => {
+    setCollapsedGroups((prev) => ({
+      ...prev,
+      [groupId]: !prev[groupId]
+    }));
+  };
 
   return (
-    <nav className="sidebar-nav">
+    <nav className="sidebar-nav" ref={navRef} aria-label="Documentation">
       {NAV.map((group) => (
-        <div key={group.title} className="sidebar-group">
-          <div className="sidebar-group__title">{group.title}</div>
-          {group.items.map((item) => {
-            const active = current === normalize(item.href);
-            return (
-              <a
-                key={item.href}
-                href={item.href}
-                className={`sidebar-item${active ? ' is-active' : ''}`}
-              >
-                {item.label}
-              </a>
-            );
-          })}
-        </div>
+        <section key={group.id} className="sidebar-group">
+          <button
+            type="button"
+            className="sidebar-group__toggle"
+            aria-expanded={!collapsedGroups[group.id]}
+            aria-controls={`sidebar-group-${group.id}`}
+            onClick={() => toggleGroup(group.id)}
+          >
+            <span className="sidebar-group__title">{group.title}</span>
+            <span className={`sidebar-group__chevron${collapsedGroups[group.id] ? ' is-collapsed' : ''}`} aria-hidden="true">⌄</span>
+          </button>
+          <div id={`sidebar-group-${group.id}`} className="sidebar-group__items" hidden={collapsedGroups[group.id]}>
+            {group.items.map((item) => {
+              const active = current === normalize(item.href);
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={`sidebar-item${active ? ' is-active' : ''}`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+          </div>
+        </section>
       ))}
     </nav>
   );

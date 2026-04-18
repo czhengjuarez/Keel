@@ -8,6 +8,9 @@
   ],
   "scripts": {
     "tokens:build": "node ./scripts/export-tokens.mjs",
-    "tokens:check": "node ./scripts/export-tokens.mjs --check"
+    "tokens:check": "node ./scripts/export-tokens.mjs --check",
+    "keel:build": "npm run build -w @ops-forward/keel",
+    "keel:typecheck": "npm run typecheck -w @ops-forward/keel",
+    "keel:test": "npm run test -w @ops-forward/keel"
   }
 }

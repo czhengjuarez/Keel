@@ -16,3 +16,9 @@ import '@ops-forward/keel/styles.css';
 ```
 
 Then apply generated classes in your framework templates.
+
+## Quality and build
+
+- `npm run keel:typecheck` validates package typing.
+- `npm run keel:test` runs unit tests for class helpers.
+- `npm run keel:build` emits publishable output to `packages/keel/dist`.

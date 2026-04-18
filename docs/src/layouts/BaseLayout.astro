@@ -25,5 +25,117 @@ const {
   </head>
   <body>
     <slot />
+    <script is:inline>
+      const wireTabsDemo = () => {
+        const tabLists = Array.from(document.querySelectorAll('.of-tabs'));
+
+        for (const tabList of tabLists) {
+          const tabs = Array.from(tabList.querySelectorAll(':scope > .of-tab'));
+          if (tabs.length === 0) continue;
+
+          tabList.setAttribute('role', 'tablist');
+
+          const nextElement = tabList.nextElementSibling;
+          const panels = nextElement?.classList.contains('of-tab-panels')
+            ? Array.from(nextElement.querySelectorAll(':scope > .of-tab-panel'))
+            : [];
+
+          const activateTab = (index) => {
+            tabs.forEach((tab, tabIndex) => {
+              const isActive = tabIndex === index;
+              tab.classList.toggle('is-active', isActive);
+              tab.setAttribute('role', 'tab');
+              tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+              tab.setAttribute('tabindex', isActive ? '0' : '-1');
+              if (isActive) tab.focus();
+            });
+
+            if (panels.length === tabs.length) {
+              panels.forEach((panel, panelIndex) => {
+                const isActive = panelIndex === index;
+                panel.classList.toggle('is-active', isActive);
+                panel.toggleAttribute('hidden', !isActive);
+              });
+            }
+          };
+
+          let activeIndex = tabs.findIndex((tab) => tab.classList.contains('is-active'));
+          if (activeIndex < 0) activeIndex = 0;
+
+          tabs.forEach((tab, index) => {
+            tab.setAttribute('type', 'button');
+
+            tab.addEventListener('click', () => {
+              activateTab(index);
+            });
+
+            tab.addEventListener('keydown', (event) => {
+              let targetIndex = index;
+              if (event.key === 'ArrowRight') targetIndex = (index + 1) % tabs.length;
+              if (event.key === 'ArrowLeft') targetIndex = (index - 1 + tabs.length) % tabs.length;
+              if (event.key === 'Home') targetIndex = 0;
+              if (event.key === 'End') targetIndex = tabs.length - 1;
+              if (targetIndex !== index) {
+                event.preventDefault();
+                activateTab(targetIndex);
+              }
+            });
+          });
+
+          activateTab(activeIndex);
+        }
+      };
+
+      const wirePopoverDemo = () => {
+        const triggers = Array.from(document.querySelectorAll('[data-popover-trigger]'));
+
+        const closeAll = () => {
+          for (const trigger of triggers) {
+            const panelId = trigger.getAttribute('aria-controls');
+            if (!panelId) continue;
+            const panel = document.getElementById(panelId);
+            if (!panel) continue;
+            panel.setAttribute('hidden', '');
+            trigger.setAttribute('aria-expanded', 'false');
+          }
+        };
+
+        for (const trigger of triggers) {
+          const panelId = trigger.getAttribute('aria-controls');
+          if (!panelId) continue;
+          const panel = document.getElementById(panelId);
+          if (!panel) continue;
+
+          trigger.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const willOpen = panel.hasAttribute('hidden');
+            closeAll();
+            if (willOpen) {
+              panel.removeAttribute('hidden');
+              trigger.setAttribute('aria-expanded', 'true');
+            }
+          });
+
+          panel.addEventListener('click', (event) => {
+            event.stopPropagation();
+          });
+        }
+
+        document.addEventListener('click', closeAll);
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') closeAll();
+        });
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          wireTabsDemo();
+          wirePopoverDemo();
+        }, { once: true });
+      } else {
+        wireTabsDemo();
+        wirePopoverDemo();
+      }
+    </script>
   </body>
 </html>
