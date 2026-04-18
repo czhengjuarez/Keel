@@ -1,0 +1,40 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Select
+description: A compact control for choosing one item from a list.
+eyebrow: Component
+---
+
+Use select when there are several predefined options and only one can be chosen.
+
+## Usage
+
+```html
+<div class="of-field">
+  <label class="of-label" for="engagement-stage">Engagement stage</label>
+  <select class="of-select" id="engagement-stage">
+    <option>Discovery</option>
+    <option>Planning</option>
+    <option>Execution</option>
+  </select>
+</div>
+```
+
+## Example
+
+<div class="demo" style="max-width: 360px;">
+  <div class="of-field">
+    <label class="of-label" for="team-size">Team size</label>
+    <select class="of-select" id="team-size">
+      <option>1-5 people</option>
+      <option>6-20 people</option>
+      <option>21-100 people</option>
+      <option>100+ people</option>
+    </select>
+  </div>
+</div>
+
+## Accessibility
+
+- Always pair with a visible label.
+- Prefer native `select` for keyboard and screen-reader support.

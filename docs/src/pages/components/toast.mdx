@@ -1,0 +1,27 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Toast
+description: Brief transient feedback after user actions.
+eyebrow: Component
+---
+
+Use toasts for non-blocking feedback after save, publish, or sync actions.
+
+## Example
+
+<div class="demo demo__stack" style="align-items: stretch; max-width: 420px;">
+  <div class="of-toast">
+    <div class="of-toast__title">Saved changes.</div>
+    <div class="of-toast__body">Your engagement summary is now up to date.</div>
+  </div>
+  <div class="of-toast of-toast--success">
+    <div class="of-toast__title">Invite sent.</div>
+    <div class="of-toast__body">A confirmation email is on the way.</div>
+  </div>
+</div>
+
+## Accessibility
+
+- Announce toast content in a polite live region.
+- Keep text short and actionable.
+- Toasts should not trap keyboard focus.

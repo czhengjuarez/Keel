@@ -1,0 +1,42 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Table
+description: Structured data display with clear headers and row scanning.
+eyebrow: Component
+---
+
+Use tables for dense data with shared columns.
+
+## Example
+
+<div class="demo" style="align-items: stretch; width: 100%;">
+  <table class="of-table">
+    <thead>
+      <tr>
+        <th>Client</th>
+        <th>Status</th>
+        <th>Lead</th>
+        <th>Last update</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Meridian Advisory</td>
+        <td><span class="of-badge of-badge--green">Active</span></td>
+        <td>Casey</td>
+        <td>2 days ago</td>
+      </tr>
+      <tr>
+        <td>Northwind Studio</td>
+        <td><span class="of-badge of-badge--amber">Paused</span></td>
+        <td>Jordan</td>
+        <td>6 days ago</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Accessibility
+
+- Use semantic `table`, `thead`, `tbody`, and `th`.
+- Include table captions for complex data sets.

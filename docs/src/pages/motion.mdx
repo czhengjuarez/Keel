@@ -1,0 +1,62 @@
+---
+layout: ../layouts/DocLayout.astro
+title: Motion
+description: Motion tokens and animation guidance for clear, intentional transitions.
+eyebrow: Getting started
+---
+
+Motion should clarify relationships, not distract from content.
+
+## Motion tokens
+
+| Token | Value | Use |
+|---|---|---|
+| `--of-dur-fast` | 120ms | Hover, quick affordances |
+| `--of-dur-base` | 200ms | Most UI transitions |
+| `--of-dur-slow` | 320ms | Entry/exit, larger surfaces |
+| `--of-ease-out` | cubic-bezier(0.22, 1, 0.36, 1) | Natural exits |
+| `--of-ease-in-out` | cubic-bezier(0.65, 0, 0.35, 1) | Balanced transitions |
+| `--of-ease-spring` | cubic-bezier(0.34, 1.56, 0.64, 1) | Expressive micro motion |
+
+## Usage principles
+
+- Prefer opacity, transform, and color transitions.
+- Avoid layout-janking animations on width/height where possible.
+- Keep repeated UI animations subtle and short.
+
+## Example
+
+```css
+.of-card {
+  transition:
+    transform var(--of-dur-base) var(--of-ease-out),
+    box-shadow var(--of-dur-base) var(--of-ease-out);
+}
+
+.of-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--of-shadow-md);
+}
+```
+
+## Recommended durations
+
+| Interaction | Duration |
+|---|---|
+| Hover | 120ms |
+| Press | 80–120ms |
+| Expand/collapse | 180–220ms |
+| Dialog enter/exit | 220–320ms |
+
+## Reduced motion
+
+Respect user preferences.
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
+}
+```

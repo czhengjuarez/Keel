@@ -1,0 +1,28 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Dialog
+description: A focused overlay for confirmations and critical actions.
+eyebrow: Component
+---
+
+Dialogs interrupt flow. Use them only for important decisions or focused edits.
+
+## Example
+
+<div class="demo" style="flex-direction: column; align-items: stretch; gap: 16px;">
+  <button class="of-btn of-btn--primary of-btn--md">Open dialog</button>
+  <div class="of-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+    <h3 id="dialog-title" class="of-dialog__title">Archive engagement?</h3>
+    <p class="of-dialog__desc">You can restore archived engagements later from settings.</p>
+    <div class="of-dialog__actions">
+      <button class="of-btn of-btn--secondary of-btn--md">Cancel</button>
+      <button class="of-btn of-btn--danger of-btn--md">Archive</button>
+    </div>
+  </div>
+</div>
+
+## Accessibility
+
+- Dialogs need a title and `aria-modal="true"`.
+- Focus should move into the dialog when opened.
+- `Esc` should close non-destructive dialogs.

@@ -1,0 +1,163 @@
+---
+layout: ../layouts/DocLayout.astro
+title: Spacing & radii
+description: Spacing scale, border radii, and layout measurements.
+eyebrow: Foundation
+---
+
+All spacing and sizing is based on a 4px grid system. This creates consistent rhythm and predictable layouts.
+
+## Spacing scale
+
+| Token | Value | Visual |
+|---|---|---|
+| `--of-space-1` | 4px | <div style="height: 4px; width: 4px; background: var(--of-fg-brand); border-radius: 2px;"></div> |
+| `--of-space-2` | 8px | <div style="height: 8px; width: 8px; background: var(--of-fg-brand); border-radius: 4px;"></div> |
+| `--of-space-3` | 12px | <div style="height: 12px; width: 12px; background: var(--of-fg-brand); border-radius: 4px;"></div> |
+| `--of-space-4` | 16px | <div style="height: 16px; width: 16px; background: var(--of-fg-brand); border-radius: 4px;"></div> |
+| `--of-space-5` | 20px | <div style="height: 20px; width: 20px; background: var(--of-fg-brand); border-radius: 4px;"></div> |
+| `--of-space-6` | 24px | <div style="height: 24px; width: 24px; background: var(--of-fg-brand); border-radius: 4px;"></div> |
+| `--of-space-8` | 32px | <div style="height: 32px; width: 32px; background: var(--of-fg-brand); border-radius: 4px;"></div> |
+| `--of-space-10` | 40px | <div style="height: 40px; width: 40px; background: var(--of-fg-brand); border-radius: 4px;"></div> |
+| `--of-space-12` | 48px | <div style="height: 48px; width: 48px; background: var(--of-fg-brand); border-radius: 4px;"></div> |
+| `--of-space-16` | 64px | <div style="height: 48px; width: 64px; background: var(--of-fg-brand); border-radius: 4px;"></div> |
+| `--of-space-20` | 80px | <div style="height: 48px; width: 80px; background: var(--of-fg-brand); border-radius: 4px;"></div> |
+
+## Spacing visualization
+
+<div class="demo" style="flex-direction: column; gap: 8px; align-items: stretch;">
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div style="font-family: var(--of-font-mono); font-size: 11px; width: 120px; color: var(--of-fg-subtle);">--of-space-1</div>
+    <div style="height: 20px; background: var(--of-bg-brand-tint); border-radius: 2px; width: 4px;"></div>
+    <div style="font-family: var(--of-font-mono); font-size: 11px; color: var(--of-fg-muted);">4px</div>
+  </div>
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div style="font-family: var(--of-font-mono); font-size: 11px; width: 120px; color: var(--of-fg-subtle);">--of-space-2</div>
+    <div style="height: 20px; background: var(--of-bg-brand-tint); border-radius: 2px; width: 8px;"></div>
+    <div style="font-family: var(--of-font-mono); font-size: 11px; color: var(--of-fg-muted);">8px</div>
+  </div>
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div style="font-family: var(--of-font-mono); font-size: 11px; width: 120px; color: var(--of-fg-subtle);">--of-space-3</div>
+    <div style="height: 20px; background: var(--of-bg-brand-tint); border-radius: 2px; width: 12px;"></div>
+    <div style="font-family: var(--of-font-mono); font-size: 11px; color: var(--of-fg-muted);">12px</div>
+  </div>
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div style="font-family: var(--of-font-mono); font-size: 11px; width: 120px; color: var(--of-fg-subtle);">--of-space-4</div>
+    <div style="height: 20px; background: var(--of-bg-brand-tint); border-radius: 2px; width: 16px;"></div>
+    <div style="font-family: var(--of-font-mono); font-size: 11px; color: var(--of-fg-muted);">16px</div>
+  </div>
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div style="font-family: var(--of-font-mono); font-size: 11px; width: 120px; color: var(--of-fg-subtle);">--of-space-6</div>
+    <div style="height: 20px; background: var(--of-bg-brand-tint); border-radius: 2px; width: 24px;"></div>
+    <div style="font-family: var(--of-font-mono); font-size: 11px; color: var(--of-fg-muted);">24px</div>
+  </div>
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div style="font-family: var(--of-font-mono); font-size: 11px; width: 120px; color: var(--of-fg-subtle);">--of-space-8</div>
+    <div style="height: 20px; background: var(--of-bg-brand-tint); border-radius: 2px; width: 32px;"></div>
+    <div style="font-family: var(--of-font-mono); font-size: 11px; color: var(--of-fg-muted);">32px</div>
+  </div>
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div style="font-family: var(--of-font-mono); font-size: 11px; width: 120px; color: var(--of-fg-subtle);">--of-space-12</div>
+    <div style="height: 20px; background: var(--of-bg-brand-tint); border-radius: 2px; width: 48px;"></div>
+    <div style="font-family: var(--of-font-mono); font-size: 11px; color: var(--of-fg-muted);">48px</div>
+  </div>
+</div>
+
+## Border radii
+
+Used for rounding corners on buttons, cards, and containers.
+
+| Token | Value | Usage |
+|---|---|---|
+| `--of-radius-xs` | 4px | Inline chips, small tags |
+| `--of-radius-sm` | 6px | Inputs, small buttons |
+| `--of-radius-md` | 10px | Buttons (default) |
+| `--of-radius-lg` | 14px | Cards |
+| `--of-radius-xl` | 20px | Panels, modals |
+| `--of-radius-2xl` | 28px | Large surfaces |
+| `--of-radius-pill` | 999px | Badges, avatars |
+
+## Radius visualization
+
+<div class="demo" style="flex-direction: row; flex-wrap: wrap; gap: 24px; align-items: center;">
+  <div style="text-align: center;">
+    <div style="width: 80px; height: 80px; background: var(--of-bg-brand-tint); border: 1px solid var(--of-border-brand); border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+      <span style="font-size: 11px; color: var(--of-fg-subtle);">xs</span>
+    </div>
+    <div style="font-size: 10px; color: var(--of-fg-muted); margin-top: 6px;">4px</div>
+  </div>
+  <div style="text-align: center;">
+    <div style="width: 80px; height: 80px; background: var(--of-bg-brand-tint); border: 1px solid var(--of-border-brand); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+      <span style="font-size: 11px; color: var(--of-fg-subtle);">sm</span>
+    </div>
+    <div style="font-size: 10px; color: var(--of-fg-muted); margin-top: 6px;">6px</div>
+  </div>
+  <div style="text-align: center;">
+    <div style="width: 80px; height: 80px; background: var(--of-bg-brand-tint); border: 1px solid var(--of-border-brand); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+      <span style="font-size: 11px; color: var(--of-fg-subtle);">md</span>
+    </div>
+    <div style="font-size: 10px; color: var(--of-fg-muted); margin-top: 6px;">10px</div>
+  </div>
+  <div style="text-align: center;">
+    <div style="width: 80px; height: 80px; background: var(--of-bg-brand-tint); border: 1px solid var(--of-border-brand); border-radius: 14px; display: flex; align-items: center; justify-content: center;">
+      <span style="font-size: 11px; color: var(--of-fg-subtle);">lg</span>
+    </div>
+    <div style="font-size: 10px; color: var(--of-fg-muted); margin-top: 6px;">14px</div>
+  </div>
+  <div style="text-align: center;">
+    <div style="width: 80px; height: 80px; background: var(--of-bg-brand-tint); border: 1px solid var(--of-border-brand); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+      <span style="font-size: 11px; color: var(--of-fg-subtle);">xl</span>
+    </div>
+    <div style="font-size: 10px; color: var(--of-fg-muted); margin-top: 6px;">20px</div>
+  </div>
+  <div style="text-align: center;">
+    <div style="width: 80px; height: 80px; background: var(--of-bg-brand-tint); border: 1px solid var(--of-border-brand); border-radius: 28px; display: flex; align-items: center; justify-content: center;">
+      <span style="font-size: 11px; color: var(--of-fg-subtle);">2xl</span>
+    </div>
+    <div style="font-size: 10px; color: var(--of-fg-muted); margin-top: 6px;">28px</div>
+  </div>
+  <div style="text-align: center;">
+    <div style="width: 80px; height: 40px; background: var(--of-bg-brand-tint); border: 1px solid var(--of-border-brand); border-radius: 999px; display: flex; align-items: center; justify-content: center;">
+      <span style="font-size: 11px; color: var(--of-fg-subtle);">pill</span>
+    </div>
+    <div style="font-size: 10px; color: var(--of-fg-muted); margin-top: 6px;">999px</div>
+  </div>
+</div>
+
+## Layout measurements
+
+Standard layout dimensions for consistent page structure.
+
+| Measurement | Value | Usage |
+|---|---|---|
+| Sidebar width | 260px | Dashboard sidebar |
+| Docs nav width | 240px | Documentation sidebar |
+| Content max-width | 760px | Documentation content |
+| Content max-width | 1280px | Dashboard content |
+| Header height | 48px | Site header |
+
+## Spacing tokens reference
+
+```css
+/* Spacing */
+--of-space-1   /* 4px */
+--of-space-2   /* 8px */
+--of-space-3   /* 12px */
+--of-space-4   /* 16px */
+--of-space-5   /* 20px */
+--of-space-6   /* 24px */
+--of-space-8   /* 32px */
+--of-space-10  /* 40px */
+--of-space-12  /* 48px */
+--of-space-16  /* 64px */
+--of-space-20  /* 80px */
+
+/* Radii */
+--of-radius-xs    /* 4px */
+--of-radius-sm    /* 6px */
+--of-radius-md    /* 10px */
+--of-radius-lg    /* 14px */
+--of-radius-xl    /* 20px */
+--of-radius-2xl   /* 28px */
+--of-radius-pill  /* 999px */
+```

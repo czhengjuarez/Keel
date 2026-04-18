@@ -1,0 +1,18 @@
+{
+  "ci": {
+    "collect": {
+      "numberOfRuns": 1,
+      "url": [
+        "http://127.0.0.1:4321/",
+        "http://127.0.0.1:4321/accessibility",
+        "http://127.0.0.1:4321/components/input",
+        "http://127.0.0.1:4321/components/dialog"
+      ]
+    },
+    "assert": {
+      "assertions": {
+        "categories:accessibility": ["error", { "minScore": 0.95 }]
+      }
+    }
+  }
+}

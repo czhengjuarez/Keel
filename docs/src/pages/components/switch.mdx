@@ -1,0 +1,38 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Switch
+description: A binary control for immediate on/off settings.
+eyebrow: Component
+---
+
+Use switch for settings that take effect immediately.
+
+## Usage
+
+```html
+<label class="of-switch">
+  <input type="checkbox" class="of-switch__input" />
+  <span class="of-switch__track"><span class="of-switch__thumb"></span></span>
+  <span class="of-switch__label">Enable reminders</span>
+</label>
+```
+
+## Example
+
+<div class="demo demo__col">
+  <label class="of-switch">
+    <input type="checkbox" class="of-switch__input" checked />
+    <span class="of-switch__track"><span class="of-switch__thumb"></span></span>
+    <span class="of-switch__label">Email notifications</span>
+  </label>
+  <label class="of-switch">
+    <input type="checkbox" class="of-switch__input" />
+    <span class="of-switch__track"><span class="of-switch__thumb"></span></span>
+    <span class="of-switch__label">Auto-archive completed tasks</span>
+  </label>
+</div>
+
+## Accessibility
+
+- Expose state with the native checkbox semantics.
+- Keep label text explicit about what turns on/off.

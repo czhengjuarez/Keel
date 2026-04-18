@@ -1,0 +1,122 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Tabs
+description: A tab interface for switching between related content panels.
+eyebrow: Component
+---
+
+Tabs organize content into separate views within the same context. Users can switch between tabs without navigating away from the current page.
+
+## Usage
+
+```html
+<div class="of-tabs">
+  <button class="of-tab is-active">Active</button>
+  <button class="of-tab">Paused</button>
+  <button class="of-tab">Closed</button>
+</div>
+<div class="of-tab-panels">
+  <div class="of-tab-panel is-active">Panel 1 content</div>
+  <div class="of-tab-panel">Panel 2 content</div>
+  <div class="of-tab-panel">Panel 3 content</div>
+</div>
+```
+
+## Default style
+
+<div class="demo" style="flex-direction: column; align-items: stretch;">
+  <div class="of-tabs">
+    <button class="of-tab is-active">Overview</button>
+    <button class="of-tab">Engagements</button>
+    <button class="of-tab">Settings</button>
+  </div>
+  <div style="padding: 16px 0; font-size: 14px; color: var(--of-fg-muted);">
+    Active tab panel content appears here.
+  </div>
+</div>
+
+## Pill variant
+
+Use pills for a softer, more compact tab appearance.
+
+<div class="demo" style="flex-direction: column; align-items: stretch;">
+  <div class="of-tabs of-tabs--pills">
+    <button class="of-tab is-active">Monthly</button>
+    <button class="of-tab">Quarterly</button>
+    <button class="of-tab">Yearly</button>
+  </div>
+</div>
+
+## With badges
+
+Add badges to tabs for counts or status indicators.
+
+<div class="demo" style="flex-direction: column; align-items: stretch;">
+  <div class="of-tabs">
+    <button class="of-tab is-active">
+      All clients
+      <span class="of-badge of-badge--purple" style="margin-left: 6px;">24</span>
+    </button>
+    <button class="of-tab">
+      Active
+      <span class="of-badge of-badge--green" style="margin-left: 6px;">18</span>
+    </button>
+    <button class="of-tab">
+      On hold
+      <span class="of-badge of-badge--amber" style="margin-left: 6px;">3</span>
+    </button>
+  </div>
+</div>
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `'default' \| 'pills'` | `'default'` | Visual style |
+| `value` | `string` | — | Currently active tab value |
+| `defaultValue` | `string` | — | Initial active tab (uncontrolled) |
+| `onChange` | `(value: string) => void` | — | Called when tab selection changes |
+
+## Accessibility
+
+- Use `role="tablist"` on the container and `role="tab"` on each button
+- The active tab should have `aria-selected="true"`
+- Inactive tabs should have `aria-selected="false"`
+- Connect tab panels with `aria-labelledby` referencing the tab ID
+
+```html
+<div class="of-tabs" role="tablist">
+  <button class="of-tab is-active" role="tab" aria-selected="true" id="tab-1">Overview</button>
+  <button class="of-tab" role="tab" aria-selected="false" id="tab-2">Details</button>
+</div>
+<div role="tabpanel" aria-labelledby="tab-1">...</div>
+```
+
+## Guidelines
+
+**Tab labels.** Keep labels short — one or two words. Use sentence case.
+
+**Tab count.** Aim for 2–5 tabs. More than that suggests the content needs reorganization.
+
+**Consistent width.** Tabs can be equal width or content-width. Don't mix within the same tab bar.
+
+**State persistence.** Remember the selected tab across page reloads when it improves the user experience.
+
+**Disabled tabs.** Avoid disabled tabs — if a section isn't available, don't show the tab at all.
+
+## JavaScript behavior
+
+```js
+// Simple tab switching
+const tabs = document.querySelectorAll('.of-tab');
+const panels = document.querySelectorAll('.of-tab-panel');
+
+tabs.forEach((tab, index) => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('is-active'));
+    panels.forEach(p => p.classList.remove('is-active'));
+    tab.classList.add('is-active');
+    panels[index].classList.add('is-active');
+  });
+});
+```

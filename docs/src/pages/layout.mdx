@@ -1,0 +1,72 @@
+---
+layout: ../layouts/DocLayout.astro
+title: Layout
+description: Page structure patterns and layout primitives for docs and product UIs.
+eyebrow: Getting started
+---
+
+Use consistent layout primitives so pages feel related and predictable.
+
+## Base structure
+
+Ops Forward interfaces use three zones:
+
+1. Header
+2. Navigation rail
+3. Main content area
+
+```html
+<div class="site-layout">
+  <header>...</header>
+  <div class="site-body">
+    <aside>...</aside>
+    <main>...</main>
+  </div>
+</div>
+```
+
+## Standard measurements
+
+| Area | Size |
+|---|---|
+| Header height | 48px |
+| Sidebar width | 260px |
+| Docs content max width | 760px |
+| Product content max width | 1280px |
+| Docs TOC width | 220px |
+
+## Spacing rhythm
+
+- Use the 4px base grid.
+- Prefer tokenized spacing (`--of-space-*`) over hard-coded px.
+- Leave clear separation between page sections (`32px`+).
+
+## Page containers
+
+| Container | Use |
+|---|---|
+| `--of-bg-base` | Full page background |
+| `--of-bg-elevated` | Cards and panels |
+| `--of-bg-recessed` | Inputs, code, nested controls |
+| `--of-bg-sunken` | Deep inset areas |
+
+## Responsive behavior
+
+- Keep single-column reading flow on smaller screens.
+- Collapse or hide TOC on tablet/mobile.
+- Avoid fixed-height panels unless content is controlled.
+
+## Recommended patterns
+
+### Documentation page
+
+- Left nav + centered content + optional right TOC
+- Strong heading hierarchy
+- Inline code + preview demos
+
+### Dashboard page
+
+- Sticky top bar
+- Fixed-width left rail
+- Main area with card grids and tables
+- Empty states for first-use flows

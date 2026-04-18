@@ -1,0 +1,30 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Radio
+description: A control for selecting one option from a set.
+eyebrow: Component
+---
+
+Use radios when users must pick exactly one value.
+
+## Usage
+
+```html
+<label class="of-radio">
+  <input type="radio" name="plan" class="of-radio__input" />
+  <span class="of-radio__label">Monthly</span>
+</label>
+```
+
+## Examples
+
+<div class="demo demo__col">
+  <label class="of-radio"><input type="radio" name="billing" class="of-radio__input" checked /> <span class="of-radio__label">Monthly billing</span></label>
+  <label class="of-radio"><input type="radio" name="billing" class="of-radio__input" /> <span class="of-radio__label">Annual billing</span></label>
+</div>
+
+## Accessibility
+
+- Use a shared `name` attribute for related radios.
+- Provide context with `fieldset` and `legend`.
+- Keyboard users should navigate radios using arrow keys in grouped controls.

@@ -1,0 +1,92 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Logo usage
+description: Guidelines for using the Ops Forward logo, mark, and wordmark.
+eyebrow: Brand
+---
+
+The Ops Forward brand uses two approved logo files for documentation and product surfaces.
+
+## Logo files
+
+| File | Format | Usage |
+|---|---|---|
+| `logo1.svg` | SVG | Primary logo for light and neutral surfaces |
+| `Logo2.svg` | SVG | Alternate logo for dark or constrained treatments |
+
+## Clear space
+
+Maintain adequate breathing room around the logo. Keep at least one mark-height of clear space on all sides.
+
+<div class="demo" style="flex-direction: column; align-items: stretch; gap: 16px;">
+  <div style="padding: 40px; background: var(--of-bg-elevated); border-radius: var(--of-radius-lg); border: 1px dashed var(--of-border-strong); display: flex; align-items: center; justify-content: center; position: relative;">
+    <div style="position: absolute; inset: 20px; border: 1px dashed var(--of-fg-subtle); display: flex; align-items: center; justify-content: center;">
+      <span style="font-size: 10px; color: var(--of-fg-subtle); text-transform: uppercase; letter-spacing: 0.05em;">Clear space</span>
+    </div>
+    <img src="/assets/logo1.svg" alt="Ops Forward logo" style="height: 64px; width: auto; z-index: 1;" />
+  </div>
+</div>
+
+## Minimum size
+
+| Asset | Minimum size |
+|---|---|
+| `logo1.svg` | 120px width |
+| `Logo2.svg` | 120px width |
+
+## Color variations
+
+Use the approved files as-is. Do not recolor either logo.
+
+<div class="demo" style="flex-direction: row; gap: 16px; flex-wrap: wrap;">
+  <div style="flex: 1; min-width: 240px; padding: 24px; background: white; border: 1px solid var(--of-border-line); border-radius: var(--of-radius-lg); display: flex; align-items: center; justify-content: center;">
+    <img src="/assets/logo1.svg" alt="Ops Forward logo 1" style="height: 52px; width: auto;" />
+  </div>
+  <div style="flex: 1; min-width: 240px; padding: 24px; background: #14101A; border-radius: var(--of-radius-lg); display: flex; align-items: center; justify-content: center;">
+    <img src="/assets/Logo2.svg" alt="Ops Forward logo 2" style="height: 52px; width: auto;" />
+  </div>
+</div>
+
+## Do
+
+<div class="demo" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+  <div style="text-align: center; padding: 20px; background: var(--of-bg-elevated); border-radius: var(--of-radius-md);">
+    <img src="/assets/logo1.svg" alt="Logo 1" style="height: 42px; width: auto; max-width: 100%;" />
+    <div style="font-size: 12px; color: var(--of-fg-muted); margin-top: 12px;">Use logo1.svg on light surfaces</div>
+  </div>
+  <div style="text-align: center; padding: 20px; background: #14101A; border-radius: var(--of-radius-md);">
+    <img src="/assets/Logo2.svg" alt="Logo 2" style="height: 42px; width: auto; max-width: 100%;" />
+    <div style="font-size: 12px; color: #CFC8CF; margin-top: 12px;">Use Logo2.svg on dark surfaces</div>
+  </div>
+</div>
+
+## Don't
+
+<div class="demo" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+  <div style="text-align: center; padding: 20px; background: var(--of-bg-elevated); border-radius: var(--of-radius-md);">
+    <img src="/assets/logo1.svg" alt="Stretched logo example" style="height: 42px; width: 180px; object-fit: fill; max-width: 100%;" />
+    <div style="font-size: 12px; color: var(--of-fg-danger); margin-top: 12px;">Do not stretch or distort</div>
+  </div>
+  <div style="text-align: center; padding: 20px; background: var(--of-bg-elevated); border-radius: var(--of-radius-md);">
+    <img src="/assets/logo1.svg" alt="Recolored logo example" style="height: 42px; width: auto; max-width: 100%; filter: hue-rotate(130deg) saturate(140%);" />
+    <div style="font-size: 12px; color: var(--of-fg-danger); margin-top: 12px;">Do not recolor logo assets</div>
+  </div>
+  <div style="text-align: center; padding: 20px; background: var(--of-bg-elevated); border-radius: var(--of-radius-md);">
+    <img src="/assets/logo1.svg" alt="Small logo example" style="height: 14px; width: auto;" />
+    <div style="font-size: 12px; color: var(--of-fg-danger); margin-top: 12px;">Do not use below minimum size</div>
+  </div>
+</div>
+
+## Placement
+
+- **Header:** Use `logo1.svg` at a readable fixed height
+- **Dark hero sections:** Use `Logo2.svg` for stronger contrast
+- **Social profiles:** Prefer a square-cropped export from the approved source logo
+- **Email signature:** Use `logo1.svg` at 120px+ width
+
+## Downloads
+
+Access the logo files from the repository:
+
+- [`/assets/logo1.svg`](/assets/logo1.svg)
+- [`/assets/Logo2.svg`](/assets/Logo2.svg)

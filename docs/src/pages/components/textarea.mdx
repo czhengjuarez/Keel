@@ -1,0 +1,32 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Textarea
+description: A multi-line text input for longer content.
+eyebrow: Component
+---
+
+Use textarea for notes, descriptions, and other long-form input.
+
+## Usage
+
+```html
+<div class="of-field">
+  <label class="of-label" for="engagement-notes">Engagement notes</label>
+  <textarea class="of-textarea" id="engagement-notes" rows="4" placeholder="Add context for the team..."></textarea>
+</div>
+```
+
+## Example
+
+<div class="demo" style="max-width: 500px; width: 100%;">
+  <div class="of-field">
+    <label class="of-label" for="project-brief">Project brief</label>
+    <textarea class="of-textarea" id="project-brief" rows="5" placeholder="What problem are we solving?"></textarea>
+    <div class="of-field__hint">This is visible to internal team members.</div>
+  </div>
+</div>
+
+## Accessibility
+
+- Always include a visible label.
+- Provide helper text when input expectations are not obvious.

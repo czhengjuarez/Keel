@@ -1,0 +1,31 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Checkbox
+description: A binary control for selecting one or more options.
+eyebrow: Component
+---
+
+Use checkboxes for independent choices in a set.
+
+## Usage
+
+```html
+<label class="of-check">
+  <input type="checkbox" class="of-check__input" />
+  <span class="of-check__label">Send weekly summary</span>
+</label>
+```
+
+## Examples
+
+<div class="demo demo__col">
+  <label class="of-check"><input type="checkbox" class="of-check__input" checked /> <span class="of-check__label">Notify client</span></label>
+  <label class="of-check"><input type="checkbox" class="of-check__input" /> <span class="of-check__label">Share with team</span></label>
+  <label class="of-check"><input type="checkbox" class="of-check__input" disabled /> <span class="of-check__label">Archived option</span></label>
+</div>
+
+## Accessibility
+
+- Wrap each checkbox in a visible label.
+- Group related options in a `fieldset` + `legend`.
+- Do not use checkbox for mutually exclusive choices (use radio).

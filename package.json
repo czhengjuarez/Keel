@@ -1,0 +1,13 @@
+{
+  "name": "keel-system",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "docs",
+    "packages/*"
+  ],
+  "scripts": {
+    "tokens:build": "node ./scripts/export-tokens.mjs",
+    "tokens:check": "node ./scripts/export-tokens.mjs --check"
+  }
+}

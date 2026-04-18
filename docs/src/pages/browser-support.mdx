@@ -1,0 +1,37 @@
+---
+layout: ../layouts/DocLayout.astro
+title: Browser support
+description: Supported browser and platform matrix for Keel adoption.
+eyebrow: Getting started
+---
+
+Define support targets before rolling Keel across multiple sites.
+
+## Tier policy
+
+- **Tier 1 (fully supported):** latest two stable versions.
+- **Tier 2 (best effort):** third most recent version.
+- **Unsupported:** legacy browsers without CSS variable support.
+
+## Matrix
+
+| Browser | Tier | Notes |
+|---|---|---|
+| Chrome (desktop) | Tier 1 | Primary QA baseline |
+| Edge (desktop) | Tier 1 | Chromium parity expected |
+| Firefox (desktop) | Tier 1 | Validate color-mix and focus visuals |
+| Safari (macOS) | Tier 1 | Validate typography and sticky layouts |
+| iOS Safari | Tier 1 | Verify forms, drawers, sticky topbar |
+| Chrome Android | Tier 1 | Verify responsive dashboard layouts |
+| Samsung Internet | Tier 2 | Best effort for consumer traffic |
+
+## Feature assumptions
+
+Keel requires support for:
+
+- CSS custom properties
+- `light-dark()`
+- `color-mix()`
+- `:focus-visible`
+
+If a target browser misses these features, add fallbacks at app layer before rollout.

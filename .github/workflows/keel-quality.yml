@@ -1,0 +1,52 @@
+name: Keel Quality Gates
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  token-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run tokens:check
+
+  docs-build-and-a11y:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: docs
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run build
+      - run: npm install -g @lhci/cli@0.13.x
+      - run: npm run preview:ci &
+      - run: npx wait-on http://127.0.0.1:4321
+      - run: lhci autorun --upload.target=temporary-public-storage --collect.url=http://127.0.0.1:4321 --assert.assertions.accessibility=error
+
+  docs-visual-smoke:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: docs
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - run: npm run preview:ci &
+      - run: npx wait-on http://127.0.0.1:4321
+      - run: npm run test:visual-smoke

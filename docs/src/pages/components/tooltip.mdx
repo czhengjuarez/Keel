@@ -1,0 +1,21 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Tooltip
+description: Short contextual help for controls and abbreviations.
+eyebrow: Component
+---
+
+Use tooltips for brief helper text, not critical instructions.
+
+## Example
+
+<div class="demo demo__row" style="position: relative; min-height: 120px; align-items: flex-start;">
+  <button class="of-btn of-btn--secondary of-btn--md">Hover me</button>
+  <span class="of-tooltip">Data refreshes every 15 minutes.</span>
+</div>
+
+## Accessibility
+
+- Tooltip content should be available on hover and focus.
+- Keep text short.
+- Do not put interactive controls inside tooltips.

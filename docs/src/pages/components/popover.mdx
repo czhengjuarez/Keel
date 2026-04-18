@@ -1,0 +1,25 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Popover
+description: Contextual floating panel for supplemental actions or information.
+eyebrow: Component
+---
+
+Use popovers for secondary controls that should stay anchored to a trigger.
+
+## Example
+
+<div class="demo" style="position: relative; min-height: 180px; align-items: flex-start;">
+  <button class="of-btn of-btn--secondary of-btn--md">Open filters</button>
+  <div class="of-popover" role="dialog" aria-label="Filters">
+    <div class="of-popover__title">Filters</div>
+    <label class="of-check"><input class="of-check__input" type="checkbox" checked /> <span class="of-check__label">Active engagements only</span></label>
+    <label class="of-check"><input class="of-check__input" type="checkbox" /> <span class="of-check__label">Show archived</span></label>
+  </div>
+</div>
+
+## Accessibility
+
+- Trigger should expose expanded/collapsed state.
+- Popover content should be keyboard reachable.
+- Close on Escape and click outside.

@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "preview:ci": "astro preview --host 127.0.0.1 --port 4321",
+    "test:visual-smoke": "node ./scripts/visual-smoke.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.0",
@@ -17,6 +19,7 @@
   "devDependencies": {
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
+    "playwright": "^1.52.0",
     "typescript": "^5.6.0"
   }
 }

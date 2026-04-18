@@ -1,0 +1,33 @@
+---
+layout: ../layouts/DocLayout.astro
+title: Release policy
+description: Semantic versioning and release quality gates for Keel.
+eyebrow: Getting started
+---
+
+Keel follows semantic versioning.
+
+## Versioning
+
+- **MAJOR:** breaking API, token, or behavior changes.
+- **MINOR:** backward-compatible components, docs, or token additions.
+- **PATCH:** bug fixes, accessibility fixes, docs corrections.
+
+## Release checklist
+
+- [ ] `npm run tokens:check` passes.
+- [ ] `npm run build` in `docs/` passes.
+- [ ] Accessibility CI checks pass.
+- [ ] Visual regression checks pass.
+- [ ] Changelog updated.
+- [ ] Migration notes included for breaking changes.
+
+## Breaking change policy
+
+For MAJOR or breaking MINOR changes, include:
+
+1. What changed
+2. Why it changed
+3. Who is affected
+4. Before/after code examples
+5. Suggested migration order

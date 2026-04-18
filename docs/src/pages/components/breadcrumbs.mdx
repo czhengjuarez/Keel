@@ -1,0 +1,25 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Breadcrumbs
+description: A secondary navigation pattern showing the current page path.
+eyebrow: Component
+---
+
+Use breadcrumbs on deep pages where users need hierarchy context.
+
+## Example
+
+<div class="demo">
+  <nav class="of-breadcrumbs" aria-label="Breadcrumb">
+    <a href="#">Clients</a>
+    <span>/</span>
+    <a href="#">Meridian Advisory</a>
+    <span>/</span>
+    <span aria-current="page">Engagement notes</span>
+  </nav>
+</div>
+
+## Accessibility
+
+- Wrap in `<nav aria-label="Breadcrumb">`.
+- Mark the current page with `aria-current="page"`.

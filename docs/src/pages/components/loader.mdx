@@ -1,0 +1,23 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Loader
+description: A visual indicator for in-progress operations.
+eyebrow: Component
+---
+
+Use loader when a process takes noticeable time and no progress percentage is available.
+
+## Example
+
+<div class="demo demo__row">
+  <span class="of-loader" aria-hidden="true"></span>
+  <span class="of-loader of-loader--sm" aria-hidden="true"></span>
+  <span class="of-loader of-loader--lg" aria-hidden="true"></span>
+</div>
+
+```html
+<div role="status" aria-live="polite">
+  <span class="of-loader" aria-hidden="true"></span>
+  <span class="sr-only">Loading engagement data...</span>
+</div>
+```

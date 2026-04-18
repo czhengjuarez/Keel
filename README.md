@@ -56,3 +56,26 @@ The system is inspired by [Kumo](https://kumo-ui.com) (Cloudflare's component li
 ### Layout rules
 - Dashboards: 260px sidebar, sticky topbar, content max-width 1280px
 - Docs: 240px nav / centered 760px content / 220px TOC
+
+---
+
+## Multi-site rebase readiness checklist
+
+Status legend: `done` · `in progress` · `missing`
+
+| Area | Requirement | Status | Notes |
+|---|---|---|---|
+| Foundations | Token source of truth and export pipeline (CSS + JSON + TS) | done | `scripts/export-tokens.mjs` + `tokens/` artifacts |
+| Foundations | Installable Keel package for multi-site reuse | done | `packages/keel` scaffolded for reusable imports |
+| Governance | Semantic versioning policy and release checklist | done | `docs/src/pages/release-policy.mdx` |
+| Governance | Changelog discipline and migration notes for breaking changes | done | `docs/src/pages/changelog.mdx` exists |
+| Accessibility | Written accessibility standards | done | `docs/src/pages/accessibility.mdx` exists |
+| Accessibility | Automated accessibility checks in CI | done | `.github/workflows/keel-quality.yml` + Lighthouse assertions |
+| Quality | Visual regression checks across component states | done | Playwright visual smoke workflow + screenshots |
+| Compatibility | Browser support matrix | done | `docs/src/pages/browser-support.mdx` |
+| Adoption | Migration playbook (legacy -> Keel mapping) | done | `docs/src/pages/migration-playbook.mdx` |
+| Adoption | Pilot site and rollout plan | done | `docs/src/pages/pilot-rollout.mdx` |
+
+### Go / no-go rule
+
+Do not rebase all sites until every `missing` item is moved to `done`, and `in progress` items are verified in CI.

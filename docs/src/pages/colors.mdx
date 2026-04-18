@@ -1,0 +1,155 @@
+---
+layout: ../layouts/DocLayout.astro
+title: Colors
+description: Brand palette, semantic surfaces, foreground colors, and status tokens.
+eyebrow: Foundation
+---
+
+The color system is built on a warm gray scale that harmonizes with magenta accents. All tokens use `light-dark()` to switch automatically between light and dark modes.
+
+## Brand palette
+
+The raw color scale used to build semantic tokens.
+
+<div class="demo" style="flex-direction: column; gap: 12px; align-items: stretch;">
+  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 80px;">
+      <div style="height: 60px; background: #fff0f7; border-radius: 8px; border: 1px solid var(--of-border-line);"></div>
+      <div style="font-size: 11px; color: var(--of-fg-subtle); margin-top: 4px;">magenta-50</div>
+    </div>
+    <div style="flex: 1; min-width: 80px;">
+      <div style="height: 60px; background: #ffd9ec; border-radius: 8px; border: 1px solid var(--of-border-line);"></div>
+      <div style="font-size: 11px; color: var(--of-fg-subtle); margin-top: 4px;">magenta-100</div>
+    </div>
+    <div style="flex: 1; min-width: 80px;">
+      <div style="height: 60px; background: #FA96CE; border-radius: 8px; border: 1px solid var(--of-border-line);"></div>
+      <div style="font-size: 11px; color: var(--of-fg-subtle); margin-top: 4px;">magenta-200</div>
+    </div>
+    <div style="flex: 1; min-width: 80px;">
+      <div style="height: 60px; background: #F53FA5; border-radius: 8px; border: 1px solid var(--of-border-line);"></div>
+      <div style="font-size: 11px; color: var(--of-fg-subtle); margin-top: 4px;">magenta-300</div>
+    </div>
+    <div style="flex: 1; min-width: 80px;">
+      <div style="height: 60px; background: #D11A82; border-radius: 8px; border: 1px solid var(--of-border-line);"></div>
+      <div style="font-size: 11px; color: var(--of-fg-subtle); margin-top: 4px;">magenta-400</div>
+    </div>
+    <div style="flex: 1; min-width: 80px;">
+      <div style="height: 60px; background: #A60E64; border-radius: 8px; border: 1px solid var(--of-border-line);"></div>
+      <div style="font-size: 11px; color: var(--of-fg-subtle); margin-top: 4px;">magenta-500</div>
+    </div>
+    <div style="flex: 1; min-width: 80px;">
+      <div style="height: 60px; background: #80074D; border-radius: 8px; border: 1px solid var(--of-border-line);"></div>
+      <div style="font-size: 11px; color: var(--of-fg-subtle); margin-top: 4px;">magenta-600</div>
+    </div>
+    <div style="flex: 1; min-width: 80px;">
+      <div style="height: 60px; background: #5C0538; border-radius: 8px; border: 1px solid var(--of-border-line);"></div>
+      <div style="font-size: 11px; color: var(--of-fg-subtle); margin-top: 4px;">magenta-700</div>
+    </div>
+    <div style="flex: 1; min-width: 80px;">
+      <div style="height: 60px; background: #3B0224; border-radius: 8px;"></div>
+      <div style="font-size: 11px; color: var(--of-fg-subtle); margin-top: 4px;">magenta-800</div>
+    </div>
+    <div style="flex: 1; min-width: 80px;">
+      <div style="height: 60px; background: #1F0113; border-radius: 8px;"></div>
+      <div style="font-size: 11px; color: var(--of-fg-subtle); margin-top: 4px;">magenta-900</div>
+    </div>
+  </div>
+</div>
+
+## Semantic surfaces
+
+Background colors for different elevations and contexts.
+
+| Token | Light value | Dark value |
+|---|---|---|
+| `--of-bg-base` | `#FBF9FB` | `#0B0810` |
+| `--of-bg-elevated` | `#ffffff` | `#14101A` |
+| `--of-bg-recessed` | `#F6F3F6` | `#211B23` |
+| `--of-bg-sunken` | `#ECE7EC` | `#0F0B15` |
+
+## Foreground colors
+
+Text colors that adapt to the background.
+
+| Token | Light | Dark | Usage |
+|---|---|---|---|
+| `--of-fg-default` | `#14101A` | `#F6F3F6` | Body text |
+| `--of-fg-muted` | `#504551` | `#DCD4DC` | Secondary text |
+| `--of-fg-subtle` | `#6E626F` | `#958997` | Placeholder, metadata |
+| `--of-fg-brand` | `#80074D` | `#F53FA5` | Links, accents |
+
+## Status colors
+
+For badges, alerts, and status indicators.
+
+<div class="demo" style="flex-direction: column; gap: 16px; align-items: stretch;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
+    <div>
+      <div style="padding: 16px; background: var(--of-bg-success-tint); border-radius: 8px; border: 1px solid var(--of-border-line);">
+        <div style="font-size: 12px; font-weight: 600; color: var(--of-fg-success);">Success</div>
+        <div style="font-size: 11px; color: var(--of-fg-muted); margin-top: 4px;">--of-fg-success</div>
+      </div>
+    </div>
+    <div>
+      <div style="padding: 16px; background: var(--of-bg-warning-tint); border-radius: 8px; border: 1px solid var(--of-border-line);">
+        <div style="font-size: 12px; font-weight: 600; color: var(--of-fg-warning);">Warning</div>
+        <div style="font-size: 11px; color: var(--of-fg-muted); margin-top: 4px;">--of-fg-warning</div>
+      </div>
+    </div>
+    <div>
+      <div style="padding: 16px; background: var(--of-bg-danger-tint); border-radius: 8px; border: 1px solid var(--of-border-line);">
+        <div style="font-size: 12px; font-weight: 600; color: var(--of-fg-danger);">Danger</div>
+        <div style="font-size: 11px; color: var(--of-fg-muted); margin-top: 4px;">--of-fg-danger</div>
+      </div>
+    </div>
+    <div>
+      <div style="padding: 16px; background: var(--of-bg-info-tint); border-radius: 8px; border: 1px solid var(--of-border-line);">
+        <div style="font-size: 12px; font-weight: 600; color: var(--of-fg-info);">Info</div>
+        <div style="font-size: 11px; color: var(--of-fg-muted); margin-top: 4px;">--of-fg-info</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+## Brand gradient
+
+For hero moments, featured cards, and logo marks.
+
+```css
+--of-gradient-brand: linear-gradient(135deg, #80074D 0%, #B01273 45%, #FB41AA 100%);
+```
+
+<div class="demo">
+  <div style="width: 100%; height: 80px; background: var(--of-gradient-brand); border-radius: 12px;"></div>
+</div>
+
+## Border colors
+
+| Token | Usage |
+|---|---|
+| `--of-border-line` | Default dividers and borders |
+| `--of-border-strong` | Emphasized borders, active states |
+| `--of-border-subtle` | Light separators, section dividers |
+| `--of-border-brand` | Focus rings, active indicators |
+
+## Color tokens reference
+
+```css
+/* Brand */
+--of-fg-brand         /* Primary accent text */
+--of-bg-brand         /* Primary button background */
+--of-bg-brand-hover   /* Button hover state */
+--of-bg-brand-tint    /* Subtle brand surfaces */
+
+/* Surfaces */
+--of-bg-base          /* Page background */
+--of-bg-elevated      /* Cards, panels */
+--of-bg-recessed      /* Inputs, code blocks */
+--of-bg-sunken        /* Deep inset areas */
+
+/* Status backgrounds */
+--of-bg-success-tint
+--of-bg-warning-tint
+--of-bg-danger-tint
+--of-bg-info-tint
+```

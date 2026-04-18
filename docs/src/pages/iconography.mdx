@@ -1,0 +1,166 @@
+---
+layout: ../layouts/DocLayout.astro
+title: Iconography
+description: Icon system, sizing, and usage guidelines.
+eyebrow: Foundation
+---
+
+The system uses [Lucide](https://lucide.dev) as the primary icon library. Lucide is a fork of Feather Icons with additional icons and active maintenance.
+
+## Lucide icons
+
+Load Lucide from the CDN or install via npm:
+
+```html
+<!-- CDN -->
+<script src="https://unpkg.com/lucide@latest"></script>
+```
+
+```bash
+# npm
+npm install lucide
+```
+
+## Default style
+
+| Attribute | Value |
+|---|---|
+| **Stroke weight** | 1.75 |
+| **Default size** | 20px |
+| **Size variants** | 16px, 20px, 24px |
+
+<div class="demo" style="flex-direction: row; gap: 32px; align-items: center; flex-wrap: wrap;">
+  <div style="text-align: center;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color: var(--of-fg-default);">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M12 16v-4M12 8h.01"/>
+    </svg>
+    <div style="font-size: 10px; color: var(--of-fg-muted); margin-top: 8px;">16px</div>
+  </div>
+  <div style="text-align: center;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color: var(--of-fg-default);">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M12 16v-4M12 8h.01"/>
+    </svg>
+    <div style="font-size: 10px; color: var(--of-fg-muted); margin-top: 8px;">20px (default)</div>
+  </div>
+  <div style="text-align: center;">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color: var(--of-fg-default);">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M12 16v-4M12 8h.01"/>
+    </svg>
+    <div style="font-size: 10px; color: var(--of-fg-muted); margin-top: 8px;">24px</div>
+  </div>
+</div>
+
+## Icon + button pairings
+
+<div class="demo" style="flex-direction: row; gap: 16px; align-items: center; flex-wrap: wrap;">
+  <button class="of-btn of-btn--primary of-btn--sm">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 5v14M5 12h14"/>
+    </svg>
+    New item
+  </button>
+  <button class="of-btn of-btn--secondary of-btn--sm">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+    </svg>
+    Edit
+  </button>
+  <button class="of-btn of-btn--ghost of-btn--sm">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+    </svg>
+    Delete
+  </button>
+</div>
+
+## Common icons
+
+<div class="demo" style="flex-direction: row; gap: 24px; align-items: center; flex-wrap: wrap;">
+  <div style="text-align: center;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color: var(--of-fg-default);">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+      <path d="M22 6l-10 7L2 6"/>
+    </svg>
+    <div style="font-size: 10px; color: var(--of-fg-muted); margin-top: 6px;">mail</div>
+  </div>
+  <div style="text-align: center;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color: var(--of-fg-default);">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="7 10 12 15 17 10"/>
+      <line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    <div style="font-size: 10px; color: var(--of-fg-muted); margin-top: 6px;">download</div>
+  </div>
+  <div style="text-align: center;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color: var(--of-fg-default);">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <polyline points="14 2 14 8 20 8"/>
+      <line x1="16" y1="13" x2="8" y2="13"/>
+      <line x1="16" y1="17" x2="8" y2="17"/>
+      <polyline points="10 9 9 9 8 9"/>
+    </svg>
+    <div style="font-size: 10px; color: var(--of-fg-muted); margin-top: 6px;">file</div>
+  </div>
+  <div style="text-align: center;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color: var(--of-fg-default);">
+      <circle cx="12" cy="12" r="10"/>
+      <line x1="12" y1="8" x2="12" y2="12"/>
+      <line x1="12" y1="16" x2="12.01" y2="16"/>
+    </svg>
+    <div style="font-size: 10px; color: var(--of-fg-muted); margin-top: 6px;">alert</div>
+  </div>
+  <div style="text-align: center;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color: var(--of-fg-default);">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+    <div style="font-size: 10px; color: var(--of-fg-muted); margin-top: 6px;">check</div>
+  </div>
+  <div style="text-align: center;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color: var(--of-fg-default);">
+      <circle cx="11" cy="11" r="8"/>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <div style="font-size: 10px; color: var(--of-fg-muted); margin-top: 6px;">search</div>
+  </div>
+</div>
+
+## Usage guidelines
+
+**Icon + text alignment.** Icons sit inline with text at the same baseline. Use `display: inline-flex` and `align-items: center` for proper vertical alignment.
+
+**Color.** Icons inherit the current text color. No special color classes needed.
+
+**Spacing.** Use a 6-8px gap between icon and text in buttons and links.
+
+**Accessibility.** Decorative icons should have `aria-hidden="true"`. Interactive icons need `aria-label` or visible text.
+
+```html
+<!-- Decorative icon -->
+<button class="of-btn of-btn--primary">
+  <svg width="16" height="16" aria-hidden="true">...</svg>
+  Save
+</button>
+
+<!-- Icon-only button (needs label) -->
+<button class="of-btn of-btn--ghost" aria-label="Close">
+  <svg width="20" height="20" aria-hidden="true">...</svg>
+</button>
+```
+
+## Icon library alternatives
+
+While Lucide is the primary choice, you may use:
+
+- **Heroicons** — Tailwind's sibling project, similar stroke style
+- **Radix Icons** — Smaller set, same aesthetic
+
+Avoid mixing multiple icon libraries on the same page. Pick one and stay consistent.
+
+## Icon resources
+
+- [Lucide.dev](https://lucide.dev) — Full icon library and search
+- [Figma plugin](https://www.figma.com/community/plugin/930551825462094906/lucide-icons) — Direct insertion into Figma

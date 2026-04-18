@@ -1,0 +1,51 @@
+---
+layout: ../layouts/DocLayout.astro
+title: Migration playbook
+description: Structured process for migrating existing websites to Keel.
+eyebrow: Getting started
+---
+
+Use this process for each website migration.
+
+## Phase 1: Baseline and inventory
+
+- Audit existing pages and components.
+- Capture screenshots for visual baseline.
+- Identify critical user journeys.
+
+## Phase 2: Token adoption
+
+- Replace raw values with Keel tokens first.
+- Keep behavior and markup stable.
+- Verify light/dark rendering.
+
+## Phase 3: Primitive replacement
+
+Migrate in this order:
+
+1. Buttons, links, badges
+2. Inputs, selects, textareas, checks, radios, switches
+3. Cards, tables, tabs
+4. Dialogs, toasts, popovers, tooltips
+
+## Phase 4: Layout alignment
+
+- Apply Keel layout constraints.
+- Normalize spacing/radius usage.
+- Validate responsive behavior.
+
+## Phase 5: QA and rollout
+
+- Keyboard and screen reader checks.
+- Compare visual snapshots against baseline.
+- Roll out behind feature flags when possible.
+
+## Legacy mapping table
+
+| Legacy pattern | Keel class |
+|---|---|
+| `.btn-primary` | `.of-btn.of-btn--primary` |
+| `.btn-secondary` | `.of-btn.of-btn--secondary` |
+| `.status-success` | `.of-badge.of-badge--green` |
+| `.form-input` | `.of-input` |
+| `.textarea` | `.of-textarea` |

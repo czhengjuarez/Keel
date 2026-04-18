@@ -1,0 +1,84 @@
+---
+layout: ../layouts/DocLayout.astro
+title: Accessibility
+description: Accessibility expectations for components and docs content.
+eyebrow: Getting started
+---
+
+Accessibility is a product requirement, not a polish step. Components should be usable with keyboard, screen reader, zoom, and reduced-motion preferences.
+
+## Keyboard navigation
+
+- All interactive elements must be keyboard reachable.
+- Use native controls (`button`, `input`, `select`, `a`) whenever possible.
+- Do not remove focusability using positive or negative tabindex hacks.
+- Complex widgets should follow WAI-ARIA authoring patterns.
+
+## Focus management
+
+- Every interactive control must have a visible focus style.
+- Keep focus ring color consistent with `--of-ring`.
+- Dialogs should move focus to the first actionable item on open and return focus to the trigger on close.
+
+```css
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--of-ring);
+}
+```
+
+## Color contrast
+
+- Body text: minimum WCAG AA contrast against its background.
+- UI controls and focus indicators: ensure clear state distinction.
+- Do not convey state by color alone. Pair color with text/icon shape.
+
+## Labels and names
+
+- Every form input needs a persistent, visible label.
+- Icon-only buttons must include `aria-label`.
+- Decorative icons should be `aria-hidden="true"`.
+
+```html
+<button class="of-btn of-btn--ghost" aria-label="Close dialog">
+  <svg aria-hidden="true" width="16" height="16">...</svg>
+</button>
+```
+
+## Live regions and status
+
+- Toasts and validation summaries should use polite live regions.
+- Error messages should be associated with fields using `aria-describedby`.
+
+## Motion and reduced motion
+
+- Keep transitions short and optional.
+- Respect `prefers-reduced-motion` for animated UI.
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+```
+
+## Testing checklist
+
+- Navigate each page using only keyboard (Tab, Shift+Tab, Enter, Esc).
+- Verify headings and landmarks with a screen reader.
+- Test contrast in both light and dark mode.
+- Test at 200% zoom.
+- Run Lighthouse and axe checks before shipping.
+
+## Component requirements
+
+| Component type | Required accessibility behavior |
+|---|---|
+| Buttons | Keyboard activation, visible focus, accessible name |
+| Inputs | Label association, error description linkage |
+| Dialogs | Focus trap, Esc close, labeled title |
+| Tabs | Arrow-key navigation, selected state announced |
+| Toasts | Live region announcement |
