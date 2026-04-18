@@ -1,0 +1,34 @@
+---
+import DocLayout from '../layouts/DocLayout.astro';
+
+const headings = [
+  { depth: 2, slug: 'whats-included', text: "What's included" },
+  { depth: 2, slug: 'philosophy', text: 'Philosophy' },
+  { depth: 2, slug: 'quick-start', text: 'Quick start' },
+];
+---
+<DocLayout
+  title="Introduction"
+  description="A small design system for Ops Forward — warm, magenta-forward, plain-spoken."
+  eyebrow="Getting started"
+  headings={headings}
+>
+  <p>Ops Forward Design System is a set of CSS tokens, visual guidelines, and components for building Ops Forward products and pages. Inspired by <a href="https://kumo-ui.com">Kumo</a> in structure — semantic tokens, <code>light-dark()</code>-driven theming — with our own visual identity.</p>
+
+  <h2 id="whats-included">What's included</h2>
+  <p>The system ships in three layers:</p>
+  <ul>
+    <li><strong>Tokens</strong> — CSS custom properties for every color, type size, spacing step, radius, shadow, and motion value. Import once; use everywhere.</li>
+    <li><strong>Components</strong> — Button, Badge, Card, Input, Tabs. Class-based so they work in any framework or plain HTML.</li>
+    <li><strong>Guidelines</strong> — Voice and tone, logo usage, accessibility patterns.</li>
+  </ul>
+
+  <h2 id="philosophy">Philosophy</h2>
+  <p>Small is intentional. Every component has one clear purpose. Copy is action-forward. Neutrals are warm so they harmonize with the magenta rather than fight it. Dark mode is automatic — no JavaScript, no toggle required for the base case.</p>
+
+  <h2 id="quick-start">Quick start</h2>
+  <pre><code>npm install @ops-forward/ui</code></pre>
+  <p>Import the token stylesheet once at your project root:</p>
+  <pre><code>import '@ops-forward/ui/css/tokens.css';</code></pre>
+  <p>See <a href="/installation">Installation</a> for fonts, dark-mode setup, and framework-specific notes.</p>
+</DocLayout>

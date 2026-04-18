@@ -1,0 +1,74 @@
+---
+layout: ../layouts/DocLayout.astro
+title: Installation
+description: Add the Ops Forward design system to your project in a few steps.
+eyebrow: Getting started
+---
+
+## Requirements
+
+Node 18 or later. The token system is plain CSS — no build step required. The React components need a bundler (Vite, Astro, Next.js, or similar).
+
+## Install
+
+```bash
+npm install @ops-forward/ui
+```
+
+Or with pnpm:
+
+```bash
+pnpm add @ops-forward/ui
+```
+
+## Add the tokens
+
+Import the token stylesheet once at your project root:
+
+```tsx
+import '@ops-forward/ui/css/tokens.css';
+```
+
+Or link it directly from a CDN:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@ops-forward/ui/dist/tokens.css">
+```
+
+## Load fonts
+
+The system uses three typefaces. Add this to your HTML `<head>`:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+```
+
+- **Space Grotesk 600** — headings and display text
+- **Inter 400 / 500 / 600** — body, UI labels, paragraphs
+- **JetBrains Mono 400 / 500** — code, timestamps, metadata
+
+## Use components
+
+Import individual components as needed:
+
+```tsx
+import { Button, Badge, Card } from '@ops-forward/ui';
+```
+
+Or use the CSS classes directly in any framework:
+
+```html
+<button class="of-btn of-btn--primary of-btn--md">Book a call</button>
+```
+
+## Dark mode
+
+The token system respects `prefers-color-scheme` automatically via CSS `color-scheme`. To let users override it, set `data-mode` on the root element:
+
+```js
+document.documentElement.setAttribute('data-mode', 'dark');
+```
+
+See [Dark mode](/dark-mode) for the full guide, including localStorage persistence.

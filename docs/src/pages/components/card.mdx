@@ -1,0 +1,43 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Card
+description: A surface for grouping related content.
+eyebrow: Component
+---
+
+Cards group related content — a client summary, a metric block, a quick action. They're surfaces, not interactive elements by default.
+
+## Usage
+
+```html
+<div class="of-card">
+  <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+    <strong>Meridian Advisory</strong>
+    <span class="of-badge of-badge--green">Active</span>
+  </div>
+  <p style="font-size:14px; color:var(--of-fg-muted); margin:0;">Strategic ops · started Jan 2025</p>
+</div>
+```
+
+## Examples
+
+<div class="demo" style="flex-direction: column; align-items: stretch;">
+  <div class="of-card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+      <strong style="font-family:var(--of-font-display); font-size:15px;">Meridian Advisory</strong>
+      <span class="of-badge of-badge--green">Active</span>
+    </div>
+    <p style="font-size:14px; color:var(--of-fg-muted); margin:0;">Strategic ops · started Jan 2025</p>
+  </div>
+  <div class="of-card" style="background:var(--of-bg-recessed);">
+    <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--of-fg-subtle); font-weight:600; margin-bottom:8px;">Total revenue</div>
+    <div style="font-family:var(--of-font-display); font-size:32px; font-weight:600; letter-spacing:-0.02em;">$48,200</div>
+    <div style="font-size:13px; color:var(--of-fg-muted); margin-top:4px;">+12% from last quarter</div>
+  </div>
+</div>
+
+## Guidelines
+
+Cards sit on `--of-bg-elevated`. Nest them inside a `--of-bg-base` page background for visible lift. Don't nest cards inside cards — use internal sections within a single card instead.
+
+Radius is `lg` (14px). Shadow is `sm` by default.

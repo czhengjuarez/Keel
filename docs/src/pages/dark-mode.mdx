@@ -1,0 +1,63 @@
+---
+layout: ../layouts/DocLayout.astro
+title: Dark mode
+description: How the Ops Forward system handles light and dark mode — automatically and without JavaScript.
+eyebrow: Getting started
+---
+
+## How it works
+
+All color tokens use the CSS `light-dark()` function:
+
+```css
+:root {
+  color-scheme: light dark;
+  --of-bg-base:     light-dark(#FBF9FB, #0B0810);
+  --of-fg-default:  light-dark(#14101A, #F6F3F6);
+}
+```
+
+The browser reads `prefers-color-scheme` and resolves each token automatically. No JavaScript, no class toggling — it just works.
+
+## Override via data attribute
+
+To let a user switch themes, set `data-mode` on the document root:
+
+```js
+// Switch to dark
+document.documentElement.setAttribute('data-mode', 'dark');
+
+// Switch to light
+document.documentElement.setAttribute('data-mode', 'light');
+
+// Remove override (follow OS again)
+document.documentElement.removeAttribute('data-mode');
+```
+
+In CSS:
+
+```css
+[data-mode='dark']  { color-scheme: dark; }
+[data-mode='light'] { color-scheme: light; }
+```
+
+This is exactly what the ThemeToggle button in this docs site does.
+
+## Persist the preference
+
+```js
+function setTheme(mode) {
+  document.documentElement.setAttribute('data-mode', mode);
+  localStorage.setItem('of-theme', mode);
+}
+
+// On page load — run before first paint to avoid a flash
+const saved = localStorage.getItem('of-theme');
+if (saved) document.documentElement.setAttribute('data-mode', saved);
+```
+
+Run the load code in a blocking `<script>` before the `<body>` to avoid the flash of the wrong theme on first paint.
+
+## Testing
+
+To test dark mode during development without changing your OS preference: Chrome DevTools → Rendering tab → Emulate CSS media feature `prefers-color-scheme: dark`.

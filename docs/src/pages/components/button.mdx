@@ -1,0 +1,51 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Button
+description: A click target that signals action.
+eyebrow: Component
+---
+
+Primary for the one thing you want someone to do on the page. Secondary and ghost for everything else.
+
+One primary button per view. More than one is a sign you have not yet decided what matters.
+
+## Usage
+
+```html
+<button class="of-btn of-btn--primary of-btn--md">Book a call</button>
+<button class="of-btn of-btn--secondary of-btn--md">Read the notes</button>
+<button class="of-btn of-btn--ghost of-btn--md">Cancel</button>
+<button class="of-btn of-btn--tint of-btn--md">Invite team</button>
+```
+
+## Variants
+
+<div class="demo">
+  <button class="of-btn of-btn--primary of-btn--md">Primary</button>
+  <button class="of-btn of-btn--secondary of-btn--md">Secondary</button>
+  <button class="of-btn of-btn--ghost of-btn--md">Ghost</button>
+  <button class="of-btn of-btn--tint of-btn--md">Tint</button>
+  <button class="of-btn of-btn--danger of-btn--md">Danger</button>
+</div>
+
+## Sizes
+
+<div class="demo">
+  <button class="of-btn of-btn--primary of-btn--sm">Small</button>
+  <button class="of-btn of-btn--primary of-btn--md">Default</button>
+  <button class="of-btn of-btn--primary of-btn--lg">Large</button>
+</div>
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `'primary' \| 'secondary' \| 'ghost' \| 'tint' \| 'danger'` | `'primary'` | Visual weight |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Target size; use `lg` on marketing pages |
+| `loading` | `boolean` | `false` | Shows a spinner and disables the button |
+| `disabled` | `boolean` | `false` | Disables the button |
+| `as` | `ElementType` | `'button'` | Render as a different element (e.g. `a`) |
+
+## Accessibility
+
+Buttons are keyboard-focusable and trigger on `Enter` or `Space`. A loading button keeps focus and announces status via `aria-busy`. If you use `as="a"`, make sure the link has an `href` — a link without one is not keyboard-focusable.

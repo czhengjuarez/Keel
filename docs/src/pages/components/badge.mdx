@@ -1,0 +1,40 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Badge
+description: A small label for status, category, or count.
+eyebrow: Component
+---
+
+Badges label things — an engagement status, a plan tier, a notification count. They don't trigger actions; use a Button for that.
+
+## Usage
+
+```html
+<span class="of-badge of-badge--green">Active</span>
+<span class="of-badge of-badge--amber">Paused</span>
+<span class="of-badge of-badge--red">Closed</span>
+<span class="of-badge of-badge--blue">Draft</span>
+<span class="of-badge of-badge--default">Archived</span>
+```
+
+## Variants
+
+<div class="demo">
+  <span class="of-badge of-badge--green">Active</span>
+  <span class="of-badge of-badge--amber">Paused</span>
+  <span class="of-badge of-badge--red">Closed</span>
+  <span class="of-badge of-badge--blue">Draft</span>
+  <span class="of-badge of-badge--purple">Featured</span>
+  <span class="of-badge of-badge--default">Archived</span>
+</div>
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `'green' \| 'amber' \| 'red' \| 'blue' \| 'purple' \| 'default'` | `'default'` | Color intent |
+| `as` | `ElementType` | `'span'` | Render as a different element |
+
+## Guidelines
+
+Keep badge text short — one or two words. Use color consistently: green for active/success, amber for warning/in-progress, red for error/danger, blue for informational, gray for neutral or archived states.
