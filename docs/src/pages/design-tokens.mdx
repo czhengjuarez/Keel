@@ -1,0 +1,106 @@
+---
+layout: ../layouts/DocLayout.astro
+title: Design tokens
+description: Every color, spacing step, radius, shadow, and motion value as CSS custom properties.
+eyebrow: Foundation
+---
+
+All tokens are CSS custom properties on `:root` with the `--of-` prefix. They use `light-dark()` so light and dark mode switch automatically — no class toggling needed.
+
+## Color — brand
+
+| Token | Use |
+|---|---|
+| `--of-fg-brand` | Primary text and icon color (magenta 600 / 300) |
+| `--of-bg-brand` | Brand-colored button backgrounds |
+| `--of-bg-brand-tint` | Subtle brand-tinted surfaces |
+| `--of-gradient-brand` | Hero moments, logo mark, featured cards |
+
+Raw palette: `--of-magenta-50` through `--of-magenta-900`.
+
+## Color — surfaces
+
+| Token | Light | Dark |
+|---|---|---|
+| `--of-bg-base` | gray 25 | gray 950 |
+| `--of-bg-elevated` | white | gray 900 |
+| `--of-bg-recessed` | gray 50 | gray 800 |
+| `--of-bg-sunken` | gray 100 | near-black |
+
+Use `base` for page backgrounds, `elevated` for cards and panels, `recessed` for inputs and code blocks, `sunken` for deep inset areas.
+
+## Color — foreground
+
+| Token | Use |
+|---|---|
+| `--of-fg-default` | Body text, primary content |
+| `--of-fg-muted` | Secondary text, descriptions |
+| `--of-fg-subtle` | Placeholder, metadata, disabled labels |
+
+## Color — status
+
+| Token | Color |
+|---|---|
+| `--of-fg-success` | Green |
+| `--of-fg-warning` | Amber |
+| `--of-fg-danger` | Red |
+| `--of-fg-info` | Blue |
+
+## Typography
+
+| Token | Value |
+|---|---|
+| `--of-font-display` | Space Grotesk, sans-serif |
+| `--of-font-sans` | Inter, sans-serif |
+| `--of-font-mono` | JetBrains Mono, monospace |
+
+Size scale: `--of-text-xs` (12px) → `--of-text-5xl` (64px).
+
+## Spacing
+
+4px base grid. `--of-space-1` (4px) through `--of-space-20` (80px).
+
+| Token | px |
+|---|---|
+| `--of-space-1` | 4 |
+| `--of-space-2` | 8 |
+| `--of-space-3` | 12 |
+| `--of-space-4` | 16 |
+| `--of-space-6` | 24 |
+| `--of-space-8` | 32 |
+| `--of-space-10` | 40 |
+| `--of-space-12` | 48 |
+| `--of-space-16` | 64 |
+| `--of-space-20` | 80 |
+
+## Radius
+
+| Token | px | Use |
+|---|---|---|
+| `--of-radius-xs` | 4 | Inline chips, small tags |
+| `--of-radius-sm` | 6 | Inputs, small buttons |
+| `--of-radius-md` | 10 | Buttons (default) |
+| `--of-radius-lg` | 14 | Cards |
+| `--of-radius-xl` | 20 | Panels, modals |
+| `--of-radius-2xl` | 28 | Large surfaces |
+| `--of-radius-pill` | 999 | Badges, avatars |
+
+## Shadows
+
+| Token | Use |
+|---|---|
+| `--of-shadow-xs` | Very subtle lift |
+| `--of-shadow-sm` | Card lift |
+| `--of-shadow-md` | Raised panels |
+| `--of-shadow-lg` | Modals, popovers |
+| `--of-shadow-brand` | Magenta glow on brand surfaces |
+
+## Motion
+
+| Token | Value |
+|---|---|
+| `--of-ease-out` | cubic-bezier(0.22, 1, 0.36, 1) |
+| `--of-ease-in-out` | cubic-bezier(0.65, 0, 0.35, 1) |
+| `--of-dur-fast` | 120ms |
+| `--of-dur-base` | 200ms |
+| `--of-dur-slow` | 320ms |

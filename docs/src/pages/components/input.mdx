@@ -1,0 +1,65 @@
+---
+layout: ../../layouts/DocLayout.astro
+title: Input
+description: A text field for user entry.
+eyebrow: Component
+---
+
+Text inputs for forms — client name, engagement notes, search. Always pair with a visible label; don't rely on placeholder text alone.
+
+## Usage
+
+```html
+<div class="of-field">
+  <label class="of-label" for="client-name">Client name</label>
+  <input class="of-input" id="client-name" type="text" placeholder="e.g. Meridian Advisory">
+</div>
+```
+
+## With helper text
+
+```html
+<div class="of-field">
+  <label class="of-label" for="rate">Hourly rate</label>
+  <input class="of-input" id="rate" type="number" placeholder="150">
+  <div class="of-field__hint">In USD. You can change this per engagement.</div>
+</div>
+```
+
+## With error
+
+```html
+<div class="of-field of-field--error">
+  <label class="of-label" for="email">Email</label>
+  <input class="of-input" id="email" type="email" value="not-an-email">
+  <div class="of-field__error">Enter a valid email address.</div>
+</div>
+```
+
+## Live examples
+
+<div class="demo" style="flex-direction:column; align-items:stretch; gap:16px; width: 100%;">
+  <div class="of-field">
+    <label class="of-label">Client name</label>
+    <input class="of-input" type="text" placeholder="e.g. Meridian Advisory">
+  </div>
+  <div class="of-field">
+    <label class="of-label">Notes</label>
+    <input class="of-input" type="text" placeholder="Add a note…">
+    <div class="of-field__hint">Visible to you only.</div>
+  </div>
+</div>
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `type` | HTML input type | `'text'` | Input type |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Field height |
+| `error` | `string` | — | Error message; marks the field invalid |
+| `hint` | `string` | — | Helper text below the field |
+| `disabled` | `boolean` | `false` | Disables the field |
+
+## Accessibility
+
+Always use a visible `<label>` with a matching `for`/`id` pair. Placeholder text is not a label substitute — it disappears on input and has low contrast in most browsers.

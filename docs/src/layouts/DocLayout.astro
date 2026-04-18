@@ -1,0 +1,40 @@
+---
+import MainLayout from './MainLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  eyebrow?: string;
+  headings?: { depth: number; slug: string; text: string }[];
+}
+
+const { title, description, eyebrow, headings = [] } = Astro.props;
+const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+---
+
+<MainLayout title={title} description={description}>
+  <div class="doc-layout">
+    <div class="doc-content">
+      <header class="doc-header">
+        {eyebrow && <div class="doc-eyebrow">{eyebrow}</div>}
+        <h1 class="doc-title">{title}</h1>
+        {description && <p class="doc-description">{description}</p>}
+      </header>
+      <slot />
+    </div>
+
+    {tocHeadings.length > 0 && (
+      <aside class="doc-toc">
+        <div class="doc-toc__label">On this page</div>
+        {tocHeadings.map(h => (
+          <a
+            href={`#${h.slug}`}
+            class={`doc-toc__item${h.depth === 3 ? ' doc-toc__item--sub' : ''}`}
+          >
+            {h.text}
+          </a>
+        ))}
+      </aside>
+    )}
+  </div>
+</MainLayout>
