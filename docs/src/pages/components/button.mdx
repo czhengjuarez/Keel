@@ -16,6 +16,7 @@ One primary button per view. More than one is a sign you have not yet decided wh
 <button class="of-btn of-btn--secondary of-btn--md">Read the notes</button>
 <button class="of-btn of-btn--ghost of-btn--md">Cancel</button>
 <button class="of-btn of-btn--tint of-btn--md">Invite team</button>
+<button class="of-btn of-btn--secondary of-btn--md of-btn--disabled" disabled>Unavailable</button>
 ```
 
 ## Variants
@@ -34,6 +35,15 @@ One primary button per view. More than one is a sign you have not yet decided wh
   <button class="of-btn of-btn--primary of-btn--sm">Small</button>
   <button class="of-btn of-btn--primary of-btn--md">Default</button>
   <button class="of-btn of-btn--primary of-btn--lg">Large</button>
+</div>
+
+## Disabled
+
+Use disabled state when the action is not currently available. Keep the label specific so people know why the action exists.
+
+<div class="demo demo__row">
+  <button class="of-btn of-btn--primary of-btn--md" disabled>Submitting</button>
+  <button class="of-btn of-btn--secondary of-btn--md" disabled>Invite sent</button>
 </div>
 
 ## Props

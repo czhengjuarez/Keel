@@ -1,0 +1,7 @@
+name = "keel"
+main = "./worker.js"
+compatibility_date = "2026-04-19"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"

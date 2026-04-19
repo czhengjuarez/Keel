@@ -1,81 +1,112 @@
-# Ops Forward — Design System
+# Keel design system (Ops Forward)
 
-A small, opinionated design system for **Ops Forward**, a studio practicing design, operations, consulting, and coaching — four sides of the same practice.
+Keel is the Ops Forward design system monorepo. It includes a reusable package (`@ops-forward/keel`), token exports, and a docs site deployed on Cloudflare Workers.
 
-The system is inspired by [Kumo](https://kumo-ui.com) (Cloudflare's component library) in its structural approach: semantic tokens, `light-dark()`-driven theming, Base UI-style primitives. Visual identity is our own — warm, magenta-forward, plain-spoken.
+## What is included
 
-## Sources
-- **Inspiration**: Kumo UI — https://kumo-ui.com · repo: https://github.com/cloudflare/kumo
-- **Brand logo**: provided by the user (see `assets/logo-full.svg`)
-- **Palette**: provided by the user — primary `#80074D`, accent `#F53FA5`, tint `#FA96CE`
+- `packages/keel` — publishable design-system package (class helpers + `styles.css`)
+- `docs` — Astro documentation site
+- `tokens` — generated token artifacts (CSS/JSON/TS)
+- `assets` — brand/design assets (including `assets/exam.svg` reference)
+- `SKILL.md` — coding-agent skill instructions for this repo
 
-## Index
-- `colors_and_type.css` — all tokens: colors, type, radii, shadows, spacing, motion
-- `SKILL.md` — Agent Skills manifest for using this system in Claude Code
-- `assets/` — `logo-full.svg`, `mark.svg`, `wordmark.svg`
-- `preview/` — ~20 design-system cards (tokens, type, components, brand)
-- `ui_kits/dashboard/` — interactive product dashboard recreation (React/JSX)
-- `ui_kits/docs/` — Kumo-style component documentation site (React/JSX)
+## Recent updates
 
----
+- Added button disabled state styling and docs examples.
+- Added brand elevated card style with white text on gradient.
+- Updated brand card gradient to vertical with light top and dark bottom:
+  `linear-gradient(180deg, #FB41AA 0%, #8F1F57 100%)`
+- Added Lucide common icon previews in docs using static SVG assets.
+- Documented Lucide defaults: `1.75` stroke, `20px` default size.
 
-## Content Fundamentals
+## Ready-to-use setup
 
-**Voice: warm, specific, plain.**
+From repo root:
 
-- **Person**: use **we** for the studio and **you** for the reader.
-- **Casing**: sentence case everywhere — headings, buttons, labels.
-- **Tone**: declarative, not exclamatory. End sentences with periods.
-- **No emoji.** Anywhere.
-- **Numbers are specific** — "two weeks", "6 months", "weekly 1:1".
-- **Button copy is action + object**: "Book a call", "Read the notes", "Send to client".
+```bash
+npm install
+```
 
----
+Build core package:
 
-## Visual Foundations
+```bash
+npm run keel:build
+```
 
-### Colors
-- **Brand primary**: `#80074D` (magenta 600)
-- **Brand accent**: `#F53FA5` (magenta 300)
-- **Brand tint**: `#FA96CE` (magenta 200)
-- **Brand gradient**: `linear-gradient(135deg, #80074D, #B01273, #FB41AA)`
-- **Semantic tokens**: `--of-bg-base`, `--of-bg-elevated`, `--of-bg-recessed`, `--of-bg-sunken`
+Typecheck and test package:
 
-### Type
-- **Display**: Space Grotesk (600) — headings, hero moments
-- **Body**: Inter (400/500/600) — paragraphs, UI, labels. 15px default
-- **Mono**: JetBrains Mono — code, metadata, timestamps
+```bash
+npm run keel:typecheck
+npm run keel:test
+```
 
-### Spacing & radii
-- **Base unit**: 4px. Scale 4/8/12/16/20/24/32/40/48/64/80.
-- **Radii**: `xs 4` · `sm 6` · `md 10` · `lg 14` · `xl 20` · `2xl 28` · `pill`
+Build docs:
 
-### Iconography
-- **Primary**: [Lucide](https://lucide.dev) at CDN, stroke weight 1.75, default 20px
+```bash
+npm run build -w @ops-forward/docs
+```
 
-### Layout rules
-- Dashboards: 260px sidebar, sticky topbar, content max-width 1280px
-- Docs: 240px nav / centered 760px content / 220px TOC
+Run docs locally:
 
----
+```bash
+npm run dev -w @ops-forward/docs
+```
 
-## Multi-site rebase readiness checklist
+## How to consume `@ops-forward/keel`
 
-Status legend: `done` · `in progress` · `missing`
+Import package CSS and use class helpers:
 
-| Area | Requirement | Status | Notes |
-|---|---|---|---|
-| Foundations | Token source of truth and export pipeline (CSS + JSON + TS) | done | `scripts/export-tokens.mjs` + `tokens/` artifacts |
-| Foundations | Installable Keel package for multi-site reuse | done | `packages/keel` scaffolded for reusable imports |
-| Governance | Semantic versioning policy and release checklist | done | `docs/src/pages/release-policy.mdx` |
-| Governance | Changelog discipline and migration notes for breaking changes | done | `docs/src/pages/changelog.mdx` exists |
-| Accessibility | Written accessibility standards | done | `docs/src/pages/accessibility.mdx` exists |
-| Accessibility | Automated accessibility checks in CI | done | `.github/workflows/keel-quality.yml` + Lighthouse assertions |
-| Quality | Visual regression checks across component states | done | Playwright visual smoke workflow + screenshots |
-| Compatibility | Browser support matrix | done | `docs/src/pages/browser-support.mdx` |
-| Adoption | Migration playbook (legacy -> Keel mapping) | done | `docs/src/pages/migration-playbook.mdx` |
-| Adoption | Pilot site and rollout plan | done | `docs/src/pages/pilot-rollout.mdx` |
+```ts
+import '@ops-forward/keel/styles.css';
+import { buttonClass, cardClass } from '@ops-forward/keel';
+```
 
-### Go / no-go rule
+Button disabled example:
 
-Do not rebase all sites until every `missing` item is moved to `done`, and `in progress` items are verified in CI.
+```tsx
+<button className={buttonClass({ variant: 'primary', size: 'md', disabled: true })} disabled>
+  Save
+</button>
+```
+
+Brand elevated card example:
+
+```html
+<article class="of-card of-card--brand-elevated">
+  <p class="of-card__kicker">Featured</p>
+  <h3>Ops Forward</h3>
+  <div class="of-card__rule"></div>
+  <p>White type on brand gradient for elevated moments.</p>
+</article>
+```
+
+## Design defaults
+
+- Brand gradient: `linear-gradient(180deg, #FB41AA 0%, #8F1F57 100%)`
+- Icon set: Lucide
+- Icon defaults: `stroke-width: 1.75`, `size: 20px`
+
+## Docs deployment (Cloudflare Worker)
+
+Docs worker config is in `docs/wrangler.toml`:
+
+- worker name: `keel`
+- asset binding: `ASSETS`
+- asset directory: `docs/dist`
+
+Deploy commands:
+
+```bash
+npm run build -w @ops-forward/docs
+npx wrangler deploy --cwd docs
+```
+
+Live URL:
+
+- `https://keel.coscient.workers.dev`
+
+## Quality checks
+
+- Token consistency: `npm run tokens:check`
+- Package checks: `npm run keel:typecheck && npm run keel:test`
+- Docs build: `npm run build -w @ops-forward/docs`
