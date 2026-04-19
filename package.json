@@ -4,7 +4,8 @@
   "type": "module",
   "workspaces": [
     "docs",
-    "packages/*"
+    "packages/*",
+    "sites/*"
   ],
   "scripts": {
     "tokens:build": "node ./scripts/export-tokens.mjs",
