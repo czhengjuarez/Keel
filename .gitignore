@@ -4,3 +4,7 @@ node_modules/
 packages/keel/dist/
 docs/dist/
 docs/.visual-smoke/
+
+# macOS
+.DS_Store
+**/.DS_Store
