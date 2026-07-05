@@ -19,7 +19,39 @@ Keel is the Ops Forward design system monorepo. It includes a reusable package (
 - Added Lucide common icon previews in docs using static SVG assets.
 - Documented Lucide defaults: `1.75` stroke, `20px` default size.
 
-## Ready-to-use setup
+## Installing in another app
+
+`@ops-forward/keel` is published to npm. To use Keel in any project:
+
+```bash
+npm install @ops-forward/keel
+```
+
+Import the stylesheet once in your app entry:
+
+```ts
+import '@ops-forward/keel/styles.css';
+```
+
+Then use class helpers or raw BEM classes in any framework:
+
+```ts
+import { buttonClass, badgeClass, cardClass } from '@ops-forward/keel';
+
+buttonClass({ variant: 'primary', size: 'md' })
+// → "of-btn of-btn--primary of-btn--md"
+```
+
+To publish a new version (until CI is set up):
+
+```bash
+# from repo root — runs typecheck, tests, build, then publishes
+cd packages/keel && npm publish
+```
+
+Requires being logged in to npm (`npm login`) with access to the `@ops-forward` scope.
+
+## Contributing to this repo (monorepo setup)
 
 From repo root:
 
@@ -52,33 +84,6 @@ Run docs locally:
 npm run dev -w @ops-forward/docs
 ```
 
-## How to consume `@ops-forward/keel`
-
-Import package CSS and use class helpers:
-
-```ts
-import '@ops-forward/keel/styles.css';
-import { buttonClass, cardClass } from '@ops-forward/keel';
-```
-
-Button disabled example:
-
-```tsx
-<button className={buttonClass({ variant: 'primary', size: 'md', disabled: true })} disabled>
-  Save
-</button>
-```
-
-Brand elevated card example:
-
-```html
-<article class="of-card of-card--brand-elevated">
-  <p class="of-card__kicker">Featured</p>
-  <h3>Ops Forward</h3>
-  <div class="of-card__rule"></div>
-  <p>White type on brand gradient for elevated moments.</p>
-</article>
-```
 
 ## Design defaults
 
@@ -104,6 +109,28 @@ npx wrangler deploy --cwd docs
 Live URL:
 
 - `https://keel.coscient.workers.dev`
+
+## AI / LLM tooling
+
+Keel ships machine-readable metadata so AI agents and code generation tools can consume the design system without scraping HTML docs.
+
+| Resource | URL | Description |
+|---|---|---|
+| `llms.txt` | `https://keel.coscient.workers.dev/llms.txt` | Plain-text docs index for LLM context windows |
+| Component registry | `https://keel.coscient.workers.dev/ai/component-registry.json` | All components, class helpers, variants, and usage examples |
+| Design tokens | `https://keel.coscient.workers.dev/ai/tokens.json` | Full token set by category |
+
+The component registry is also importable from the package:
+
+```ts
+import registry from '@ops-forward/keel/ai/component-registry.json';
+```
+
+Source files:
+- `packages/keel/src/ai/component-registry.json` — canonical registry (exported from package)
+- `docs/src/pages/llms.txt.ts` — Astro endpoint for `/llms.txt`
+- `docs/src/pages/ai/component-registry.json.ts` — serves registry at `/ai/component-registry.json`
+- `docs/src/pages/ai/tokens.json.ts` — serves tokens at `/ai/tokens.json`
 
 ## Quality checks
 

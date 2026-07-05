@@ -1,0 +1,159 @@
+{
+  "$schema": "https://opsforward.com/schemas/keel-component-registry.schema.json",
+  "version": "0.1.0",
+  "package": "@ops-forward/keel",
+  "docsUrl": "https://keel.coscient.workers.dev",
+  "description": "Machine-readable registry of all Keel design system components, class helpers, and their variants.",
+  "components": [
+    {
+      "name": "Button",
+      "description": "A click target that signals action. Use primary for the one thing you want someone to do on the page. Secondary and ghost for everything else. One primary button per view.",
+      "classHelper": "buttonClass",
+      "baseClass": "of-btn",
+      "docsUrl": "https://keel.coscient.workers.dev/components/button",
+      "options": {
+        "variant": {
+          "type": "enum",
+          "values": ["primary", "secondary", "ghost", "tint", "danger"],
+          "default": "primary",
+          "classPattern": "of-btn--{value}"
+        },
+        "size": {
+          "type": "enum",
+          "values": ["sm", "md", "lg"],
+          "default": "md",
+          "classPattern": "of-btn--{value}"
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "classPattern": "of-btn--disabled"
+        }
+      },
+      "classPattern": "of-btn of-btn--{variant} of-btn--{size} [of-btn--disabled]",
+      "examples": [
+        "<button class=\"of-btn of-btn--primary of-btn--md\">Book a call</button>",
+        "<button class=\"of-btn of-btn--secondary of-btn--md\">Read the notes</button>",
+        "<button class=\"of-btn of-btn--ghost of-btn--md\">Cancel</button>",
+        "<button class=\"of-btn of-btn--danger of-btn--md\">Delete</button>",
+        "<button class=\"of-btn of-btn--primary of-btn--md of-btn--disabled\" disabled>Unavailable</button>"
+      ]
+    },
+    {
+      "name": "Badge",
+      "description": "An inline label for status or category. Use sparingly — badges only work when they are rare enough to signal something.",
+      "classHelper": "badgeClass",
+      "baseClass": "of-badge",
+      "docsUrl": "https://keel.coscient.workers.dev/components/badge",
+      "options": {
+        "variant": {
+          "type": "enum",
+          "values": ["green", "amber", "red", "blue", "purple", "default"],
+          "default": "default",
+          "classPattern": "of-badge--{value}"
+        }
+      },
+      "classPattern": "of-badge of-badge--{variant}",
+      "examples": [
+        "<span class=\"of-badge of-badge--green\">Active</span>",
+        "<span class=\"of-badge of-badge--amber\">Pending</span>",
+        "<span class=\"of-badge of-badge--red\">Failed</span>",
+        "<span class=\"of-badge of-badge--blue\">Info</span>",
+        "<span class=\"of-badge of-badge--default\">Draft</span>"
+      ]
+    },
+    {
+      "name": "Card",
+      "description": "A surface for grouping related content. Use brand-elevated variant for hero moments: white type on brand gradient.",
+      "classHelper": "cardClass",
+      "baseClass": "of-card",
+      "docsUrl": "https://keel.coscient.workers.dev/components/card",
+      "options": {},
+      "modifiers": [
+        {
+          "class": "of-card--brand-elevated",
+          "description": "White text on brand gradient (linear-gradient(180deg, #FB41AA 0%, #8F1F57 100%)). For featured or hero moments."
+        }
+      ],
+      "parts": {
+        "kicker": "of-card__kicker",
+        "rule": "of-card__rule"
+      },
+      "classPattern": "of-card [of-card--brand-elevated]",
+      "examples": [
+        "<article class=\"of-card\"><h3>Standard Card</h3></article>",
+        "<article class=\"of-card of-card--brand-elevated\"><p class=\"of-card__kicker\">Featured</p><h3>Ops Forward</h3><div class=\"of-card__rule\"></div><p>White type on brand gradient.</p></article>"
+      ]
+    },
+    {
+      "name": "Input",
+      "description": "A single-line text input. Compose with fieldClass, labelClass, hintClass, and errorClass to build full accessible form fields.",
+      "classHelper": "inputClass",
+      "baseClass": "of-input",
+      "docsUrl": "https://keel.coscient.workers.dev/components/input",
+      "relatedHelpers": [
+        { "name": "fieldClass", "baseClass": "of-field", "modifiers": ["of-field--error"] },
+        { "name": "labelClass", "baseClass": "of-label" },
+        { "name": "hintClass", "baseClass": "of-field__hint" },
+        { "name": "errorClass", "baseClass": "of-field__error" },
+        { "name": "fieldA11yIds", "description": "Generates helpId and errorId strings for aria-describedby wiring." }
+      ],
+      "options": {
+        "invalid": {
+          "type": "boolean",
+          "default": false,
+          "appliesTo": "fieldClass",
+          "classPattern": "of-field--error"
+        }
+      },
+      "classPattern": "of-input",
+      "examples": [
+        "<div class=\"of-field\"><label class=\"of-label\" for=\"email\">Email</label><input class=\"of-input\" id=\"email\" type=\"email\" /></div>",
+        "<div class=\"of-field of-field--error\"><label class=\"of-label\" for=\"name\">Name</label><input class=\"of-input\" id=\"name\" aria-describedby=\"name-error\" /><p class=\"of-field__error\" id=\"name-error\">Name is required</p></div>"
+      ]
+    },
+    {
+      "name": "Select",
+      "description": "A native dropdown selector styled to match Keel inputs.",
+      "classHelper": "selectClass",
+      "baseClass": "of-select",
+      "docsUrl": "https://keel.coscient.workers.dev/components/select",
+      "options": {},
+      "classPattern": "of-select",
+      "examples": [
+        "<select class=\"of-select\"><option value=\"\">Choose one…</option><option value=\"a\">Option A</option></select>"
+      ]
+    },
+    {
+      "name": "Textarea",
+      "description": "A multi-line text input styled to match Keel inputs.",
+      "classHelper": "textareaClass",
+      "baseClass": "of-textarea",
+      "docsUrl": "https://keel.coscient.workers.dev/components/textarea",
+      "options": {},
+      "classPattern": "of-textarea",
+      "examples": [
+        "<textarea class=\"of-textarea\" rows=\"4\" placeholder=\"Add a note…\"></textarea>"
+      ]
+    },
+    {
+      "name": "Switch",
+      "description": "A toggle for boolean settings. Built from five composable parts: root, input (hidden checkbox), track, thumb, and label.",
+      "classHelper": "switchRootClass",
+      "baseClass": "of-switch",
+      "docsUrl": "https://keel.coscient.workers.dev/components/switch",
+      "parts": {
+        "root": { "class": "of-switch", "helper": "switchRootClass", "element": "label" },
+        "input": { "class": "of-switch__input", "helper": "switchInputClass", "element": "input[type=checkbox][role=switch]" },
+        "track": { "class": "of-switch__track", "helper": "switchTrackClass", "element": "span" },
+        "thumb": { "class": "of-switch__thumb", "helper": "switchThumbClass", "element": "span" },
+        "label": { "class": "of-switch__label", "helper": "switchLabelClass", "element": "span" }
+      },
+      "options": {},
+      "classPattern": "of-switch / of-switch__input / of-switch__track / of-switch__thumb / of-switch__label",
+      "examples": [
+        "<label class=\"of-switch\"><input class=\"of-switch__input\" type=\"checkbox\" role=\"switch\" /><span class=\"of-switch__track\"><span class=\"of-switch__thumb\"></span></span><span class=\"of-switch__label\">Enable notifications</span></label>"
+      ]
+    }
+  ]
+}
