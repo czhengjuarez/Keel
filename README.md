@@ -21,7 +21,7 @@ Keel is the Ops Forward design system monorepo. It includes a reusable package (
 
 ## Installing in another app
 
-`@ops-forward/keel` is published to npm. To use Keel in any project:
+`@ops-forward/keel` is published to npm at [npmjs.com/package/@ops-forward/keel](https://www.npmjs.com/package/@ops-forward/keel). To use Keel in any project:
 
 ```bash
 npm install @ops-forward/keel
@@ -44,12 +44,20 @@ buttonClass({ variant: 'primary', size: 'md' })
 
 To publish a new version (until CI is set up):
 
+1. Bump `version` in `packages/keel/package.json`
+2. Run from the package directory:
+
 ```bash
-# from repo root — runs typecheck, tests, build, then publishes
-cd packages/keel && npm publish
+cd packages/keel && npm publish --no-workspaces
 ```
 
-Requires being logged in to npm (`npm login`) with access to the `@ops-forward` scope.
+`prepack` runs automatically: typecheck → tests → build → publish.
+
+Requires an npm token with write access to `@ops-forward` set in `~/.npmrc`:
+
+```bash
+echo "//registry.npmjs.org/:_authToken=YOUR_TOKEN" >> ~/.npmrc
+```
 
 ## Contributing to this repo (monorepo setup)
 

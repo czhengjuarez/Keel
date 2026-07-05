@@ -63,7 +63,9 @@ When looking up component usage, token values, or class names, prefer the hosted
 
 ## Installing @ops-forward/keel in another app
 
-The package is published to npm. Consuming apps run:
+The package is live on npm: https://www.npmjs.com/package/@ops-forward/keel
+
+Consuming apps run:
 
 ```bash
 npm install @ops-forward/keel
@@ -76,19 +78,27 @@ import '@ops-forward/keel/styles.css';
 import { buttonClass, badgeClass } from '@ops-forward/keel';
 ```
 
-Full install docs: `packages/keel/README.md` and https://keel.coscient.workers.dev/llms.txt
+Full install and usage docs: `packages/keel/README.md` and https://keel.coscient.workers.dev/llms.txt
 
 ## Publishing a new version
 
 CI publish is not yet set up — publish manually until then:
 
+1. Bump `version` in `packages/keel/package.json`
+2. Run from the package directory:
+
 ```bash
-# bump version in packages/keel/package.json first, then:
-cd packages/keel && npm publish
+cd packages/keel && npm publish --no-workspaces
 # prepack runs automatically: typecheck → test → build → publish
 ```
 
-Requires `npm login` with access to the `@ops-forward` npm scope.
+Requires an npm token with write access to `@ops-forward` in `~/.npmrc`:
+
+```bash
+echo "//registry.npmjs.org/:_authToken=YOUR_TOKEN" >> ~/.npmrc
+```
+
+Generate tokens at: npmjs.com → avatar → Access Tokens → Granular Access Token (Read and write, Bypass 2FA checked).
 
 ## Commands
 
