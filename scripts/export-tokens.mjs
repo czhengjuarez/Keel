@@ -7,6 +7,7 @@ const OUT_DIR = path.join(ROOT, 'tokens');
 const OUT_JSON = path.join(OUT_DIR, 'tokens.json');
 const OUT_CSS = path.join(OUT_DIR, 'tokens.css');
 const OUT_TS = path.join(OUT_DIR, 'tokens.ts');
+const OUT_PKG_CSS = path.join(ROOT, 'packages/keel/src/tokens.css');
 
 const checkOnly = process.argv.includes('--check');
 
@@ -157,9 +158,10 @@ function main() {
   const okJson = writeOrCheck(OUT_JSON, jsonContent);
   const okCss = writeOrCheck(OUT_CSS, cssContent);
   const okTs = writeOrCheck(OUT_TS, tsContent);
+  const okPkgCss = writeOrCheck(OUT_PKG_CSS, cssContent);
 
   if (checkOnly) {
-    if (!okJson || !okCss || !okTs) {
+    if (!okJson || !okCss || !okTs || !okPkgCss) {
       console.error('Token artifacts are out of date. Run: npm run tokens:build');
       process.exit(1);
     }
@@ -167,7 +169,7 @@ function main() {
     return;
   }
 
-  console.log(`Exported ${tokens.length} tokens to tokens/`);
+  console.log(`Exported ${tokens.length} tokens to tokens/ and packages/keel/src/`);
 }
 
 main();

@@ -1,4 +1,5 @@
 /* Keel package styles */
+@import './tokens.css';
 
 .of-btn {
   display: inline-flex;
