@@ -101,6 +101,7 @@ import { buttonClass, badgeClass, cardClass } from '@ops-forward/keel';
 
 - Component registry: ${DOCS_BASE}/ai/component-registry.json
 - Design tokens:      ${DOCS_BASE}/ai/tokens.json
+- Design skill:       ${DOCS_BASE}/skill.md  (install: npx skills add czhengjuarez/Keel@keel-design)
 
 ## Docs pages
 

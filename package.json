@@ -11,6 +11,7 @@
     "tokens:check": "node ./scripts/export-tokens.mjs --check",
     "keel:build": "npm run build -w @ops-forward/keel",
     "keel:typecheck": "npm run typecheck -w @ops-forward/keel",
-    "keel:test": "npm run test -w @ops-forward/keel"
+    "keel:test": "npm run test -w @ops-forward/keel",
+    "skill:sync": "cp skills/keel-design/SKILL.md docs/public/skill.md"
   }
 }
