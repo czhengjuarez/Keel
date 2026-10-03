@@ -26,7 +26,10 @@ It has **no runtime dependencies** and **no React components**. The class helper
 | `src/components/SelectField.tsx` | `selectClass()` helper |
 | `src/components/TextareaField.tsx` | `textareaClass()` helper |
 | `src/components/Switch.tsx` | `switchRootClass()`, `switchInputClass()`, `switchTrackClass()`, `switchThumbClass()`, `switchLabelClass()`, `switchId()` |
-| `src/ai/component-registry.json` | Machine-readable component metadata |
+| `src/ai/component-registry.json` | Machine-readable component metadata. **Generated** by `scripts/registry.mjs` — do not edit |
+| `scripts/registry-meta.mjs` | Editorial registry input: descriptions, examples, parts |
+| `scripts/registry.mjs` | Registry generator; `--check` fails on drift (runs in CI and `prepack`) |
+| `bin/keel.js` | CLI: `ls`, `doc`, `docs`, `check`, `ai` |
 | `src/ai/USAGE.md` | Dense LLM quick-reference (also at /llms.txt) |
 
 ## Class helper pattern

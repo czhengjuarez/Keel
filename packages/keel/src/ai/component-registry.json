@@ -14,13 +14,23 @@
       "options": {
         "variant": {
           "type": "enum",
-          "values": ["primary", "secondary", "ghost", "tint", "danger"],
+          "values": [
+            "primary",
+            "secondary",
+            "ghost",
+            "tint",
+            "danger"
+          ],
           "default": "primary",
           "classPattern": "of-btn--{value}"
         },
         "size": {
           "type": "enum",
-          "values": ["sm", "md", "lg"],
+          "values": [
+            "sm",
+            "md",
+            "lg"
+          ],
           "default": "md",
           "classPattern": "of-btn--{value}"
         },
@@ -48,7 +58,14 @@
       "options": {
         "variant": {
           "type": "enum",
-          "values": ["green", "amber", "red", "blue", "purple", "default"],
+          "values": [
+            "green",
+            "amber",
+            "red",
+            "blue",
+            "purple",
+            "default"
+          ],
           "default": "default",
           "classPattern": "of-badge--{value}"
         }
@@ -68,6 +85,10 @@
       "classHelper": "cardClass",
       "baseClass": "of-card",
       "docsUrl": "https://keel.coscient.workers.dev/components/card",
+      "parts": {
+        "kicker": "of-card__kicker",
+        "rule": "of-card__rule"
+      },
       "options": {},
       "modifiers": [
         {
@@ -75,10 +96,6 @@
           "description": "White text on brand gradient (linear-gradient(180deg, #FB41AA 0%, #8F1F57 100%)). For featured or hero moments."
         }
       ],
-      "parts": {
-        "kicker": "of-card__kicker",
-        "rule": "of-card__rule"
-      },
       "classPattern": "of-card [of-card--brand-elevated]",
       "examples": [
         "<article class=\"of-card\"><h3>Standard Card</h3></article>",
@@ -92,11 +109,29 @@
       "baseClass": "of-input",
       "docsUrl": "https://keel.coscient.workers.dev/components/input",
       "relatedHelpers": [
-        { "name": "fieldClass", "baseClass": "of-field", "modifiers": ["of-field--error"] },
-        { "name": "labelClass", "baseClass": "of-label" },
-        { "name": "hintClass", "baseClass": "of-field__hint" },
-        { "name": "errorClass", "baseClass": "of-field__error" },
-        { "name": "fieldA11yIds", "description": "Generates helpId and errorId strings for aria-describedby wiring." }
+        {
+          "name": "fieldClass",
+          "baseClass": "of-field",
+          "modifiers": [
+            "of-field--error"
+          ]
+        },
+        {
+          "name": "labelClass",
+          "baseClass": "of-label"
+        },
+        {
+          "name": "hintClass",
+          "baseClass": "of-field__hint"
+        },
+        {
+          "name": "errorClass",
+          "baseClass": "of-field__error"
+        },
+        {
+          "name": "fieldA11yIds",
+          "description": "Generates helpId and errorId strings for aria-describedby wiring."
+        }
       ],
       "options": {
         "invalid": {
@@ -143,11 +178,31 @@
       "baseClass": "of-switch",
       "docsUrl": "https://keel.coscient.workers.dev/components/switch",
       "parts": {
-        "root": { "class": "of-switch", "helper": "switchRootClass", "element": "label" },
-        "input": { "class": "of-switch__input", "helper": "switchInputClass", "element": "input[type=checkbox][role=switch]" },
-        "track": { "class": "of-switch__track", "helper": "switchTrackClass", "element": "span" },
-        "thumb": { "class": "of-switch__thumb", "helper": "switchThumbClass", "element": "span" },
-        "label": { "class": "of-switch__label", "helper": "switchLabelClass", "element": "span" }
+        "root": {
+          "class": "of-switch",
+          "helper": "switchRootClass",
+          "element": "label"
+        },
+        "input": {
+          "class": "of-switch__input",
+          "helper": "switchInputClass",
+          "element": "input[type=checkbox][role=switch]"
+        },
+        "track": {
+          "class": "of-switch__track",
+          "helper": "switchTrackClass",
+          "element": "span"
+        },
+        "thumb": {
+          "class": "of-switch__thumb",
+          "helper": "switchThumbClass",
+          "element": "span"
+        },
+        "label": {
+          "class": "of-switch__label",
+          "helper": "switchLabelClass",
+          "element": "span"
+        }
       },
       "options": {},
       "classPattern": "of-switch / of-switch__input / of-switch__track / of-switch__thumb / of-switch__label",
@@ -155,5 +210,41 @@
         "<label class=\"of-switch\"><input class=\"of-switch__input\" type=\"checkbox\" role=\"switch\" /><span class=\"of-switch__track\"><span class=\"of-switch__thumb\"></span></span><span class=\"of-switch__label\">Enable notifications</span></label>"
       ]
     }
+  ],
+  "classes": [
+    "of-badge",
+    "of-badge--amber",
+    "of-badge--blue",
+    "of-badge--default",
+    "of-badge--green",
+    "of-badge--purple",
+    "of-badge--red",
+    "of-btn",
+    "of-btn--danger",
+    "of-btn--disabled",
+    "of-btn--ghost",
+    "of-btn--lg",
+    "of-btn--md",
+    "of-btn--primary",
+    "of-btn--secondary",
+    "of-btn--sm",
+    "of-btn--tint",
+    "of-card",
+    "of-card--brand-elevated",
+    "of-card__kicker",
+    "of-card__rule",
+    "of-field",
+    "of-field--error",
+    "of-field__error",
+    "of-field__hint",
+    "of-input",
+    "of-label",
+    "of-select",
+    "of-switch",
+    "of-switch__input",
+    "of-switch__label",
+    "of-switch__thumb",
+    "of-switch__track",
+    "of-textarea"
   ]
 }

@@ -4,6 +4,14 @@
 > Component registry: https://keel.coscient.workers.dev/ai/component-registry.json
 > Design tokens: https://keel.coscient.workers.dev/ai/tokens.json
 
+## CLI (offline, version-matched)
+
+```bash
+npx keel ls                 # list components
+npx keel doc button         # classes, options, examples (--json for machine output)
+npx keel check src/**/*.html  # flag invented of-* classes, with suggestions
+```
+
 ## Install
 
 ```bash

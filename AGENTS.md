@@ -14,7 +14,8 @@ Keel is the Ops Forward design system monorepo. Read this file first when workin
 | Package entry point | `packages/keel/src/index.ts` |
 | Component CSS | `packages/keel/src/styles.css` |
 | AI quick-reference | `packages/keel/src/ai/USAGE.md` |
-| Component registry (source) | `packages/keel/src/ai/component-registry.json` |
+| Component registry (generated) | `packages/keel/src/ai/component-registry.json` — never edit; edit `packages/keel/scripts/registry-meta.mjs` |
+| CLI | `packages/keel/bin/keel.js` (`keel ls`, `keel doc <name>`, `keel check <files>`, `keel ai`) |
 | Docs pages (Astro MDX) | `docs/src/pages/` |
 | Docs layouts | `docs/src/layouts/` |
 | Brand assets | `assets/` |
@@ -35,7 +36,7 @@ When looking up component usage, token values, or class names, prefer the hosted
 1. Add CSS to `packages/keel/src/styles.css` using `.of-{component}` BEM conventions
 2. Add a TypeScript class helper to `packages/keel/src/components/{Component}.tsx`
 3. Export from `packages/keel/src/index.ts`
-4. Add an entry to `packages/keel/src/ai/component-registry.json`
+4. Add an entry to `packages/keel/scripts/registry-meta.mjs` (description, examples, options), then run `npm run registry:build`. The generator derives variants/defaults from `types.ts` and the helper, and fails if `styles.css` and the registry disagree
 5. Add a docs page at `docs/src/pages/components/{component}.mdx`
 6. Add the page to the `pages` array in `docs/src/pages/llms.txt.ts`
 
@@ -56,6 +57,7 @@ When looking up component usage, token values, or class names, prefer the hosted
 ## Anti-patterns
 
 - Don't add a CSS class without a corresponding TypeScript class helper in `packages/keel/`
+- Don't edit `component-registry.json` directly — edit `registry-meta.mjs` and regenerate
 - Don't edit `tokens/` directly — always edit `colors_and_type.css` and regenerate
 - Don't introduce React or framework-specific imports into `packages/keel/` — it must stay framework-agnostic
 - Don't add runtime dependencies to `packages/keel/` — it is a CSS + TypeScript utility library only
@@ -106,6 +108,8 @@ Generate tokens at: npmjs.com → avatar → Access Tokens → Granular Access T
 npm install                                             # install all workspace dependencies
 npm run tokens:build                                    # regenerate tokens from colors_and_type.css
 npm run tokens:check                                    # verify tokens are in sync
+npm run registry:build                                  # regenerate component-registry.json
+npm run registry:check                                  # verify registry is in sync with source
 npm run keel:build                                      # build @ops-forward/keel
 npm run keel:typecheck                                  # typecheck package
 npm run keel:test                                       # run package tests

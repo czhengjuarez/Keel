@@ -25,6 +25,7 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
+      - run: npm run registry:check
       - run: npm run keel:typecheck
       - run: npm run keel:test
       - run: npm run keel:build
