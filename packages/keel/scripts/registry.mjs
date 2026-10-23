@@ -130,15 +130,32 @@ if (errors.length) {
 
 const next = JSON.stringify(registry, null, 2) + '\n';
 
+// USAGE.md's component table is generated too, between markers.
+const usagePath = join(src, 'ai', 'USAGE.md');
+const helperList = (c) => [c.classHelper, ...(c.relatedHelpers ?? []).map((h) => h.name)].map((h) => `\`${h}()\``).join(' ');
+const table = [
+  '| Component | Helper | Base class | Pattern |',
+  '|-----------|--------|-----------|---------|',
+  ...registry.components.map((c) => `| ${c.name} | ${helperList(c)} | \`${c.baseClass}\` | \`${c.classPattern}\` |`)
+].join('\n');
+const usageCurrent = readFileSync(usagePath, 'utf8');
+const marker = /(<!-- registry:table:start -->)[\s\S]*?(<!-- registry:table:end -->)/;
+if (!marker.test(usageCurrent)) {
+  console.error('USAGE.md is missing the <!-- registry:table:start/end --> markers');
+  process.exit(1);
+}
+const usageNext = usageCurrent.replace(marker, `$1\n${table}\n$2`);
+
 if (process.argv.includes('--check')) {
   let current = '';
   try { current = readFileSync(registryPath, 'utf8'); } catch {}
-  if (current !== next) {
-    console.error('component-registry.json is out of date. Run: npm run registry:build');
+  if (current !== next || usageCurrent !== usageNext) {
+    console.error('component-registry.json or the USAGE.md table is out of date. Run: npm run registry:build');
     process.exit(1);
   }
   console.log(`registry ok (${registry.components.length} components, ${registry.classes.length} classes)`);
 } else {
   writeFileSync(registryPath, next);
+  writeFileSync(usagePath, usageNext);
   console.log(`wrote ${registryPath} (${registry.components.length} components, ${registry.classes.length} classes)`);
 }

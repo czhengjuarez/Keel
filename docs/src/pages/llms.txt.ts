@@ -1,8 +1,10 @@
 import type { APIRoute } from 'astro';
+import registry from '../../../packages/keel/src/ai/component-registry.json';
+import pkg from '../../../packages/keel/package.json';
 
 const DOCS_BASE = 'https://keel.coscient.workers.dev';
 
-const pages = [
+const foundations = [
   { path: '/installation',        title: 'Installation',        description: 'How to install @ops-forward/keel and import styles.' },
   { path: '/design-tokens',       title: 'Design Tokens',       description: 'All CSS custom properties: color, spacing, radius, shadow, motion.' },
   { path: '/colors',              title: 'Colors',              description: 'Magenta brand palette, semantic color tokens, light/dark mode.' },
@@ -14,28 +16,6 @@ const pages = [
   { path: '/iconography',         title: 'Iconography',         description: 'Lucide icon set. Defaults: stroke-width 1.75, size 20px.' },
   { path: '/accessibility',       title: 'Accessibility',       description: 'Accessibility standards and ARIA patterns for Keel components.' },
   { path: '/browser-support',     title: 'Browser Support',     description: 'Supported browsers and CSS feature requirements.' },
-  { path: '/components/button',   title: 'Button',              description: 'of-btn with variants: primary, secondary, ghost, tint, danger. Sizes: sm, md, lg.' },
-  { path: '/components/badge',    title: 'Badge',               description: 'of-badge with variants: green, amber, red, blue, purple, default.' },
-  { path: '/components/card',     title: 'Card',                description: 'of-card surface with brand-elevated modifier for hero moments.' },
-  { path: '/components/input',    title: 'Input',               description: 'of-input, of-field, of-label, of-field__hint, of-field__error for accessible form fields.' },
-  { path: '/components/select',   title: 'Select',              description: 'of-select native dropdown.' },
-  { path: '/components/textarea', title: 'Textarea',            description: 'of-textarea multi-line input.' },
-  { path: '/components/switch',   title: 'Switch',              description: 'of-switch toggle with composable parts: track, thumb, label.' },
-  { path: '/components/checkbox', title: 'Checkbox',            description: 'of-checkbox form control.' },
-  { path: '/components/radio',    title: 'Radio',               description: 'of-radio form control.' },
-  { path: '/components/banner',   title: 'Banner',              description: 'of-banner for page-level status messages.' },
-  { path: '/components/breadcrumbs', title: 'Breadcrumbs',     description: 'of-breadcrumbs navigation.' },
-  { path: '/components/dialog',   title: 'Dialog',              description: 'of-dialog modal overlay.' },
-  { path: '/components/empty-state', title: 'Empty State',      description: 'of-empty-state for zero-data views.' },
-  { path: '/components/loader',   title: 'Loader',              description: 'of-loader spinner for async states.' },
-  { path: '/components/pagination', title: 'Pagination',        description: 'of-pagination for list navigation.' },
-  { path: '/components/popover',  title: 'Popover',             description: 'of-popover for contextual overlays.' },
-  { path: '/components/skeleton', title: 'Skeleton',            description: 'of-skeleton loading placeholder.' },
-  { path: '/components/table',    title: 'Table',               description: 'of-table for data display.' },
-  { path: '/components/tabs',     title: 'Tabs',                description: 'of-tabs for sectioned navigation.' },
-  { path: '/components/toast',    title: 'Toast',               description: 'of-toast for ephemeral notifications.' },
-  { path: '/components/tooltip',  title: 'Tooltip',             description: 'of-tooltip for contextual hints.' },
-  { path: '/components/link',     title: 'Link',                description: 'of-link for styled anchor elements.' },
   { path: '/brand/logo-usage',    title: 'Logo Usage',          description: 'Brand logo rules, clearspace, and do/don\'t guidance.' },
   { path: '/brand/voice-and-tone', title: 'Voice & Tone',       description: 'Writing style and brand voice for Ops Forward.' },
   { path: '/contributing',        title: 'Contributing',        description: 'How to add tokens, components, or docs to Keel.' },
@@ -43,6 +23,31 @@ const pages = [
   { path: '/changelog',           title: 'Changelog',           description: 'Version history and breaking changes.' },
   { path: '/release-policy',      title: 'Release Policy',      description: 'Versioning and deprecation policy.' },
 ];
+
+// Component links are generated from the registry so they cannot drift from the package.
+// The build fails if a component docs page has no registry entry, or the reverse.
+const docsSlugs = Object.keys(import.meta.glob('./components/*.mdx')).map(p => p.replace(/^\.\/components\/|\.mdx$/g, ''));
+const slugOf = (c: { docsUrl: string }) => c.docsUrl.split('/').pop()!;
+const registrySlugs = registry.components.map(slugOf);
+const missingEntry = docsSlugs.filter(s => !registrySlugs.includes(s));
+const missingPage = registrySlugs.filter(s => !docsSlugs.includes(s));
+if (missingEntry.length || missingPage.length) {
+  throw new Error(
+    'llms.txt: docs pages and component registry disagree.\n' +
+      (missingEntry.length ? `  docs page without registry entry: ${missingEntry.join(', ')}\n` : '') +
+      (missingPage.length ? `  registry entry without docs page: ${missingPage.join(', ')}\n` : ''),
+  );
+}
+
+const firstSentence = (text: string) => text.split(/(?<=\.)\s/)[0];
+const componentPages = registry.components.map(c => ({
+  path: `/components/${slugOf(c)}`,
+  title: c.name,
+  description: `${c.baseClass}${c.classPattern.includes('{') ? ' (variants)' : ''} — ${firstSentence(c.description)}`,
+}));
+
+const link = (p: { path: string; title: string; description: string }) =>
+  `- [${p.title}](${DOCS_BASE}${p.path}.md): ${p.description}`;
 
 const tokenSummary = `
 ## Design tokens
@@ -71,21 +76,17 @@ const componentSummary = `
 Import styles once: import '@ops-forward/keel/styles.css'
 Import helpers: import { buttonClass, badgeClass, cardClass, ... } from '@ops-forward/keel'
 
-Button       of-btn               variants: primary secondary ghost tint danger  |  sizes: sm md lg  |  modifier: of-btn--disabled
-Badge        of-badge             variants: green amber red blue purple default
-Card         of-card              modifiers: of-card--brand-elevated (white text on brand gradient)
-Input        of-input             compose with: of-field of-field--error of-label of-field__hint of-field__error
-Select       of-select
-Textarea     of-textarea
-Switch       of-switch            parts: of-switch__input of-switch__track of-switch__thumb of-switch__label
-Checkbox     of-checkbox
-Radio        of-radio
+${registry.components
+  .map(c => `${c.name.padEnd(12)} ${c.classHelper.padEnd(18)} ${c.classPattern}`)
+  .join('\n')}
 
+Look up one component offline: npx keel doc <name>
+Flag invented classes in markup: npx keel check <files>
 Full component registry: ${DOCS_BASE}/ai/component-registry.json
 `.trim();
 
 const body = `# Keel — Ops Forward Design System
-> Package: @ops-forward/keel  |  Docs: ${DOCS_BASE}  |  Version: 0.1.0
+> Package: @ops-forward/keel  |  Docs: ${DOCS_BASE}  |  Version: ${pkg.version}
 
 Keel is the Ops Forward design system. It ships design tokens as CSS custom properties, utility class helpers in TypeScript, and component CSS. It is framework-agnostic — consume the CSS classes directly or use the TypeScript class helpers with any framework.
 
@@ -103,9 +104,15 @@ import { buttonClass, badgeClass, cardClass } from '@ops-forward/keel';
 - Design tokens:      ${DOCS_BASE}/ai/tokens.json
 - Design skill:       ${DOCS_BASE}/skill.md  (install: npx skills add czhengjuarez/Keel@keel-design)
 
-## Docs pages
+Every docs page is also available as Markdown by appending .md to its URL.
 
-${pages.map(p => `- [${p.title}](${DOCS_BASE}${p.path}): ${p.description}`).join('\n')}
+## Foundations
+
+${foundations.map(link).join('\n')}
+
+## Component pages
+
+${componentPages.map(link).join('\n')}
 
 ${tokenSummary}
 

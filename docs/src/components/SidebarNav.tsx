@@ -10,6 +10,7 @@ const NAV = [
     items: [
       { label: 'Introduction',   href: '/' },
       { label: 'Installation',   href: '/installation' },
+      { label: 'Design skill',   href: '/skill' },
       { label: 'Design tokens',  href: '/design-tokens' },
       { label: 'Dark mode',      href: '/dark-mode' },
       { label: 'Accessibility',  href: '/accessibility' },

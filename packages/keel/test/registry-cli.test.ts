@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -60,5 +60,44 @@ describe('keel cli', () => {
     expect(r.status).toBe(1);
     expect(r.stdout).toContain('unknown class of-btn--outline');
     expect(run('bin/keel.js', 'check', good).status).toBe(0);
+  });
+});
+
+describe('design skill', () => {
+  it('only teaches classes that exist (every **Good** example)', () => {
+    const skill = readFileSync(join(pkg, '../../skills/keel-design/SKILL.md'), 'utf8');
+    const good = [...skill.matchAll(/\*\*Good\*\*\s*```(?:html|css|tsx?)?\n([\s\S]*?)```/g)].map((m) => m[1]);
+    expect(good.length).toBeGreaterThan(5);
+
+    const dir = mkdtempSync(join(tmpdir(), 'keel-skill-'));
+    const file = join(dir, 'good.txt');
+    writeFileSync(file, good.join('\n'));
+    const r = run('bin/keel.js', 'check', file);
+    expect(r.stdout).toBe('');
+    expect(r.status).toBe(0);
+  });
+});
+
+describe('published entry points', () => {
+  it('every exports target exists after build', () => {
+    const manifest = JSON.parse(readFileSync(join(pkg, 'package.json'), 'utf8'));
+    const targets = [manifest.main, manifest.types, ...Object.values<unknown>(manifest.bin)];
+    const walk = (v: unknown): void => {
+      if (typeof v === 'string') targets.push(v);
+      else if (v && typeof v === 'object') Object.values(v).forEach(walk);
+    };
+    walk(manifest.exports);
+    const built = spawnSync('npx', ['tsup'], { cwd: pkg, encoding: 'utf8' });
+    expect(built.status, built.stderr).toBe(0);
+    for (const t of new Set(targets)) {
+      const exists = spawnSync('test', ['-e', join(pkg, t as string)]).status === 0;
+      expect(exists, `${t} is declared in package.json but missing`).toBe(true);
+    }
+  }, 60_000);
+
+  it('the built ESM entry imports in plain Node and exposes the helpers', () => {
+    const r = spawnSync('node', ['--input-type=module', '-e', "import('./dist/index.js').then(m=>console.log(typeof m.buttonClass, typeof m.tabClass))"], { cwd: pkg, encoding: 'utf8' });
+    expect(r.stderr).toBe('');
+    expect(r.stdout.trim()).toBe('function function');
   });
 });

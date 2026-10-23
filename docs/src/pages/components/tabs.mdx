@@ -11,12 +11,12 @@ Tabs organize content into separate views within the same context. Users can swi
 
 ```html
 <div class="of-tabs">
-  <button class="of-tab is-active">Active</button>
+  <button class="of-tab of-tab--active">Active</button>
   <button class="of-tab">Paused</button>
   <button class="of-tab">Closed</button>
 </div>
 <div class="of-tab-panels">
-  <div class="of-tab-panel is-active">Panel 1 content</div>
+  <div class="of-tab-panel of-tab-panel--active">Panel 1 content</div>
   <div class="of-tab-panel">Panel 2 content</div>
   <div class="of-tab-panel">Panel 3 content</div>
 </div>
@@ -26,7 +26,7 @@ Tabs organize content into separate views within the same context. Users can swi
 
 <div class="demo" style="flex-direction: column; align-items: stretch;">
   <div class="of-tabs">
-    <button class="of-tab is-active">Overview</button>
+    <button class="of-tab of-tab--active">Overview</button>
     <button class="of-tab">Engagements</button>
     <button class="of-tab">Settings</button>
   </div>
@@ -41,7 +41,7 @@ Use pills for a softer, more compact tab appearance.
 
 <div class="demo" style="flex-direction: column; align-items: stretch;">
   <div class="of-tabs of-tabs--pills">
-    <button class="of-tab is-active">Monthly</button>
+    <button class="of-tab of-tab--active">Monthly</button>
     <button class="of-tab">Quarterly</button>
     <button class="of-tab">Yearly</button>
   </div>
@@ -53,7 +53,7 @@ Add badges to tabs for counts or status indicators.
 
 <div class="demo" style="flex-direction: column; align-items: stretch;">
   <div class="of-tabs">
-    <button class="of-tab is-active">
+    <button class="of-tab of-tab--active">
       All clients
       <span class="of-badge of-badge--purple" style="margin-left: 6px;">24</span>
     </button>
@@ -86,7 +86,7 @@ Add badges to tabs for counts or status indicators.
 
 ```html
 <div class="of-tabs" role="tablist">
-  <button class="of-tab is-active" role="tab" aria-selected="true" id="tab-1">Overview</button>
+  <button class="of-tab of-tab--active" role="tab" aria-selected="true" id="tab-1">Overview</button>
   <button class="of-tab" role="tab" aria-selected="false" id="tab-2">Details</button>
 </div>
 <div role="tabpanel" aria-labelledby="tab-1">...</div>
@@ -113,10 +113,10 @@ const panels = document.querySelectorAll('.of-tab-panel');
 
 tabs.forEach((tab, index) => {
   tab.addEventListener('click', () => {
-    tabs.forEach(t => t.classList.remove('is-active'));
-    panels.forEach(p => p.classList.remove('is-active'));
-    tab.classList.add('is-active');
-    panels[index].classList.add('is-active');
+    tabs.forEach(t => t.classList.remove('of-tab--active'));
+    panels.forEach(p => p.classList.remove('of-tab-panel--active'));
+    tab.classList.add('of-tab--active');
+    panels[index].classList.add('of-tab-panel--active');
   });
 });
 ```

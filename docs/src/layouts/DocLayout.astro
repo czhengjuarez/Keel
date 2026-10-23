@@ -2,13 +2,16 @@
 import MainLayout from './MainLayout.astro';
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
   eyebrow?: string;
   headings?: { depth: number; slug: string; text: string }[];
 }
 
-const { title, description, eyebrow, headings = [] } = Astro.props;
+// MDX pages pass their frontmatter as `frontmatter`; .astro pages pass props directly.
+const props = Astro.props as Props & { frontmatter?: Partial<Props> };
+const { title = '', description, eyebrow } = { ...props, ...props.frontmatter };
+const headings = props.headings ?? [];
 const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 ---
 

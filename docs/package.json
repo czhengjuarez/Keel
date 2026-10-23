@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node ../scripts/skill-sync.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "preview:ci": "astro preview --host 127.0.0.1 --port 4321",
@@ -19,7 +20,10 @@
   "devDependencies": {
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
+    "node-html-parser": "^9.0.5",
     "playwright": "^1.52.0",
+    "turndown": "^7.2.4",
+    "turndown-plugin-gfm": "^1.0.2",
     "typescript": "^5.6.0"
   }
 }

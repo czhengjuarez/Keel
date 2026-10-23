@@ -1,0 +1,24 @@
+---
+import DocLayout from '../layouts/DocLayout.astro';
+import { Content, rawContent } from '../../../skills/keel-design/SKILL.md';
+
+// Rule headings are `### rule-id`; surface them in the table of contents.
+const headings = [...rawContent().matchAll(/^### ([a-z0-9-]+)$/gm)].map(([, id]) => ({
+  depth: 3,
+  slug: id,
+  text: id,
+}));
+---
+
+<DocLayout
+  title="Design skill"
+  description="Rules for building Keel interfaces, written for people and AI agents. Install with npx skills add czhengjuarez/Keel@keel-design."
+  eyebrow="AI"
+  headings={headings}
+>
+  <p>
+    The same file is served as Markdown at <a href="/skill.md">/skill.md</a>. For component APIs, run
+    <code>npx keel doc &lt;name&gt;</code> or read the <a href="/ai/component-registry.json">registry</a>.
+  </p>
+  <Content />
+</DocLayout>

@@ -182,5 +182,223 @@ export const components = [
     examples: [
       '<label class="of-switch"><input class="of-switch__input" type="checkbox" role="switch" /><span class="of-switch__track"><span class="of-switch__thumb"></span></span><span class="of-switch__label">Enable notifications</span></label>'
     ]
+  },
+  {
+    name: 'Check',
+    description: 'A checkbox with a label, for independent yes/no choices or multi-select lists.',
+    classHelper: 'checkClass',
+    baseClass: 'of-check',
+    docsSlug: 'checkbox',
+    parts: { input: 'of-check__input', label: 'of-check__label' },
+    options: {},
+    classPattern: 'of-check / of-check__input / of-check__label',
+    examples: [
+      '<label class="of-check"><input class="of-check__input" type="checkbox" /> <span class="of-check__label">Email me weekly updates</span></label>'
+    ]
+  },
+  {
+    name: 'Radio',
+    description: 'A radio button with a label, for choosing exactly one option from a short list.',
+    classHelper: 'radioClass',
+    baseClass: 'of-radio',
+    docsSlug: 'radio',
+    parts: { input: 'of-radio__input', label: 'of-radio__label' },
+    options: {},
+    classPattern: 'of-radio / of-radio__input / of-radio__label',
+    examples: [
+      '<label class="of-radio"><input class="of-radio__input" type="radio" name="plan" /> <span class="of-radio__label">Monthly</span></label>'
+    ]
+  },
+  {
+    name: 'Banner',
+    description: 'A page-level status message. Pick the variant by meaning (info, success, warning, danger), not by color preference.',
+    classHelper: 'bannerClass',
+    baseClass: 'of-banner',
+    docsSlug: 'banner',
+    options: {
+      variant: {
+        type: 'enum',
+        source: { helper: 'bannerClass', param: 'variant', enumType: 'KeelBannerVariant' },
+        classPattern: 'of-banner--{value}'
+      }
+    },
+    classPattern: 'of-banner of-banner--{variant}',
+    examples: [
+      '<div class="of-banner of-banner--info" role="status">Maintenance starts at 22:00 UTC.</div>',
+      '<div class="of-banner of-banner--danger" role="alert">Payment failed. Update your card.</div>'
+    ]
+  },
+  {
+    name: 'Breadcrumbs',
+    description: 'A navigation trail showing where the current page sits in the hierarchy.',
+    classHelper: 'breadcrumbsClass',
+    baseClass: 'of-breadcrumbs',
+    docsSlug: 'breadcrumbs',
+    options: {},
+    classPattern: 'of-breadcrumbs',
+    examples: [
+      '<nav class="of-breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/engagements">Engagements</a><span>/</span><span aria-current="page">Acme</span></nav>'
+    ]
+  },
+  {
+    name: 'Link',
+    description: 'A styled inline anchor. Set aria-disabled="true" to render the disabled state.',
+    classHelper: 'linkClass',
+    baseClass: 'of-link',
+    docsSlug: 'link',
+    options: {},
+    classPattern: 'of-link',
+    examples: ['<a class="of-link" href="/docs">Read the docs</a>']
+  },
+  {
+    name: 'Empty State',
+    description: 'A placeholder for views with no data yet. Say what is missing and offer the one action that fixes it.',
+    classHelper: 'emptyClass',
+    baseClass: 'of-empty',
+    docsSlug: 'empty-state',
+    parts: { title: 'of-empty__title', body: 'of-empty__body' },
+    options: {},
+    classPattern: 'of-empty / of-empty__title / of-empty__body',
+    examples: [
+      '<div class="of-empty"><h3 class="of-empty__title">No engagements yet</h3><p class="of-empty__body">Create your first engagement to get started.</p><button class="of-btn of-btn--primary of-btn--md">New engagement</button></div>'
+    ]
+  },
+  {
+    name: 'Dialog',
+    description: 'A focused overlay for confirmations and critical actions. Interrupts flow, so use it only for important decisions.',
+    classHelper: 'dialogClass',
+    baseClass: 'of-dialog',
+    docsSlug: 'dialog',
+    parts: { title: 'of-dialog__title', description: 'of-dialog__desc', actions: 'of-dialog__actions' },
+    options: {},
+    classPattern: 'of-dialog / of-dialog__title / of-dialog__desc / of-dialog__actions',
+    examples: [
+      '<div class="of-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h3 id="dialog-title" class="of-dialog__title">Archive engagement?</h3><p class="of-dialog__desc">You can restore it later from settings.</p><div class="of-dialog__actions"><button class="of-btn of-btn--secondary of-btn--md">Cancel</button><button class="of-btn of-btn--danger of-btn--md">Archive</button></div></div>'
+    ]
+  },
+  {
+    name: 'Toast',
+    description: 'A short-lived notification confirming an action. Not for errors that need a decision; use Banner or Dialog.',
+    classHelper: 'toastClass',
+    baseClass: 'of-toast',
+    docsSlug: 'toast',
+    parts: { title: 'of-toast__title', body: 'of-toast__body' },
+    options: {
+      variant: {
+        type: 'enum',
+        source: { helper: 'toastClass', param: 'variant', enumType: 'KeelToastVariant' },
+        classPattern: 'of-toast--{value}'
+      }
+    },
+    classPattern: 'of-toast of-toast--{variant}',
+    examples: [
+      '<div class="of-toast of-toast--success" role="status"><div class="of-toast__title">Saved</div><div class="of-toast__body">Your changes are live.</div></div>'
+    ]
+  },
+  {
+    name: 'Popover',
+    description: 'A panel anchored to a trigger for secondary controls. The popover positions against its nearest positioned ancestor.',
+    classHelper: 'popoverClass',
+    baseClass: 'of-popover',
+    docsSlug: 'popover',
+    parts: { title: 'of-popover__title' },
+    options: {},
+    classPattern: 'of-popover / of-popover__title',
+    examples: [
+      '<div style="position: relative"><button class="of-btn of-btn--secondary of-btn--md" aria-haspopup="dialog" aria-expanded="true" aria-controls="filters">Filters</button><div id="filters" class="of-popover" role="dialog" aria-label="Filters"><div class="of-popover__title">Filters</div><label class="of-check"><input class="of-check__input" type="checkbox" /> <span class="of-check__label">Active only</span></label></div></div>'
+    ]
+  },
+  {
+    name: 'Tooltip',
+    description: 'Brief helper text shown on hover and focus. Never put interactive controls or critical instructions in a tooltip.',
+    classHelper: 'tooltipClass',
+    baseClass: 'of-tooltip',
+    docsSlug: 'tooltip',
+    parts: { anchor: 'of-tooltip-anchor' },
+    relatedHelpers: [{ name: 'tooltipAnchorClass', baseClass: 'of-tooltip-anchor' }],
+    options: {},
+    classPattern: 'of-tooltip-anchor > of-tooltip',
+    examples: [
+      '<span class="of-tooltip-anchor"><button class="of-btn of-btn--secondary of-btn--md" aria-describedby="hint">Refresh</button><span id="hint" role="tooltip" class="of-tooltip">Data refreshes every 15 minutes.</span></span>'
+    ]
+  },
+  {
+    name: 'Loader',
+    description: 'A spinner for in-progress async work. Respects prefers-reduced-motion.',
+    classHelper: 'loaderClass',
+    baseClass: 'of-loader',
+    docsSlug: 'loader',
+    options: {
+      size: {
+        type: 'enum',
+        source: { helper: 'loaderClass', param: 'size', enumType: 'KeelSize' },
+        classPattern: 'of-loader--{value}'
+      }
+    },
+    classPattern: 'of-loader of-loader--{size}',
+    examples: ['<span class="of-loader of-loader--md" role="status" aria-label="Loading"></span>']
+  },
+  {
+    name: 'Skeleton',
+    description: 'A shimmering placeholder shaped like the content it stands in for. Set width and height on it yourself.',
+    classHelper: 'skeletonClass',
+    baseClass: 'of-skeleton',
+    docsSlug: 'skeleton',
+    options: {},
+    classPattern: 'of-skeleton',
+    examples: ['<div class="of-skeleton" style="width: 240px; height: 16px" aria-hidden="true"></div>']
+  },
+  {
+    name: 'Table',
+    description: 'A data table with a recessed header row. Style the element with <table>, <thead>, <th>, and <td>.',
+    classHelper: 'tableClass',
+    baseClass: 'of-table',
+    docsSlug: 'table',
+    options: {},
+    classPattern: 'of-table',
+    examples: [
+      '<table class="of-table"><thead><tr><th>Name</th><th>Status</th></tr></thead><tbody><tr><td>Acme</td><td><span class="of-badge of-badge--green">Active</span></td></tr></tbody></table>'
+    ]
+  },
+  {
+    name: 'Pagination',
+    description: 'A row of buttons for moving between pages of a list. Mark the current page with the tint button variant.',
+    classHelper: 'paginationClass',
+    baseClass: 'of-pagination',
+    docsSlug: 'pagination',
+    options: {},
+    classPattern: 'of-pagination',
+    examples: [
+      '<nav class="of-pagination" aria-label="Pagination"><button class="of-btn of-btn--secondary of-btn--sm">Previous</button><button class="of-btn of-btn--tint of-btn--sm" aria-current="page">1</button><button class="of-btn of-btn--secondary of-btn--sm">2</button><button class="of-btn of-btn--secondary of-btn--sm">Next</button></nav>'
+    ]
+  },
+  {
+    name: 'Tabs',
+    description: 'Switch between views in the same context without navigating away. Toggle the --active modifiers from your own script.',
+    classHelper: 'tabsClass',
+    baseClass: 'of-tabs',
+    docsSlug: 'tabs',
+    relatedHelpers: [
+      { name: 'tabClass', baseClass: 'of-tab', modifiers: ['of-tab--active'] },
+      { name: 'tabPanelsClass', baseClass: 'of-tab-panels' },
+      { name: 'tabPanelClass', baseClass: 'of-tab-panel', modifiers: ['of-tab-panel--active'] }
+    ],
+    options: {
+      variant: {
+        type: 'enum',
+        source: { helper: 'tabsClass', param: 'variant', enumType: 'KeelTabsVariant' },
+        classPattern: 'of-tabs--{value}'
+      },
+      active: {
+        type: 'boolean',
+        source: { helper: 'tabClass', param: 'active' },
+        appliesTo: 'tabClass, tabPanelClass',
+        classPattern: 'of-tab--active'
+      }
+    },
+    classPattern: 'of-tabs of-tabs--{variant}; of-tab [of-tab--active]; of-tab-panel [of-tab-panel--active]',
+    examples: [
+      '<div class="of-tabs of-tabs--underline" role="tablist"><button class="of-tab of-tab--active" role="tab" aria-selected="true">Overview</button><button class="of-tab" role="tab" aria-selected="false">Activity</button></div><div class="of-tab-panels"><div class="of-tab-panel of-tab-panel--active" role="tabpanel">Overview content</div><div class="of-tab-panel" role="tabpanel">Activity content</div></div>'
+    ]
   }
 ];

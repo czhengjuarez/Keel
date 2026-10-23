@@ -5,6 +5,26 @@ description: Release notes for the Ops Forward design system docs.
 eyebrow: Getting started
 ---
 
+## 2026-10-22 — @ops-forward/keel 0.2.0
+
+### Added
+
+- Package now ships CSS and class helpers for 15 more components: Check, Radio, Banner, Breadcrumbs, Link, Empty State, Dialog, Toast, Popover, Tooltip, Loader, Skeleton, Table, Pagination, Tabs. Previously these were styled only on this docs site.
+- `keel` CLI: `keel ls`, `keel doc <name>`, `keel check <files>` (flags invented `of-*` classes), `keel ai`.
+- Component registry is generated from source and checked in CI; it now includes a `classes` list of every valid class.
+- Every docs page is available as Markdown by appending `.md` to its URL; `/llms.txt` links to them.
+- Design skill page at `/skill`.
+
+### Changed
+
+- Tabs state uses BEM modifiers: `of-tab--active` and `of-tab-panel--active` (docs previously used `is-active`).
+- Tooltip uses `of-tooltip-anchor` as its wrapper (docs previously used `of-tooltip-demo`).
+- Banner, Toast, Loader, and Tabs helpers always emit an explicit variant/size class (`of-banner--neutral`, `of-toast--default`, `of-loader--md`, `of-tabs--underline`).
+
+### Fixed
+
+- Docs page titles, descriptions, and headings were blank on MDX pages.
+
 ## 2026-04-18
 
 ### Added

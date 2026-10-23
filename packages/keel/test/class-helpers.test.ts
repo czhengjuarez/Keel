@@ -1,6 +1,19 @@
 import { describe, expect, it } from 'vitest';
 
-import { badgeClass, buttonClass, fieldA11yIds, inputClass, switchId, switchRootClass } from '../src';
+import {
+  badgeClass,
+  bannerClass,
+  buttonClass,
+  fieldA11yIds,
+  inputClass,
+  loaderClass,
+  switchId,
+  switchRootClass,
+  tabClass,
+  tabPanelClass,
+  tabsClass,
+  toastClass
+} from '../src';
 
 describe('class helpers', () => {
   it('builds button classes with defaults', () => {
@@ -37,5 +50,21 @@ describe('class helpers', () => {
     expect(first).toMatch(/^switch-\d+$/);
     expect(second).toMatch(/^switch-\d+$/);
     expect(first).not.toBe(second);
+  });
+
+  it('builds variant classes for the overlay and feedback components', () => {
+    expect(bannerClass()).toBe('of-banner of-banner--neutral');
+    expect(bannerClass({ variant: 'danger', className: 'mb-4' })).toBe('of-banner of-banner--danger mb-4');
+    expect(toastClass({ variant: 'success' })).toBe('of-toast of-toast--success');
+    expect(loaderClass()).toBe('of-loader of-loader--md');
+    expect(loaderClass({ size: 'lg' })).toBe('of-loader of-loader--lg');
+  });
+
+  it('builds tab classes with BEM active state', () => {
+    expect(tabsClass()).toBe('of-tabs of-tabs--underline');
+    expect(tabsClass({ variant: 'pills' })).toBe('of-tabs of-tabs--pills');
+    expect(tabClass()).toBe('of-tab');
+    expect(tabClass({ active: true })).toBe('of-tab of-tab--active');
+    expect(tabPanelClass({ active: true })).toBe('of-tab-panel of-tab-panel--active');
   });
 });

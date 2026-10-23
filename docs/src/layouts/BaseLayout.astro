@@ -43,7 +43,7 @@ const {
           const activateTab = (index) => {
             tabs.forEach((tab, tabIndex) => {
               const isActive = tabIndex === index;
-              tab.classList.toggle('is-active', isActive);
+              tab.classList.toggle('of-tab--active', isActive);
               tab.setAttribute('role', 'tab');
               tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
               tab.setAttribute('tabindex', isActive ? '0' : '-1');
@@ -53,13 +53,13 @@ const {
             if (panels.length === tabs.length) {
               panels.forEach((panel, panelIndex) => {
                 const isActive = panelIndex === index;
-                panel.classList.toggle('is-active', isActive);
+                panel.classList.toggle('of-tab-panel--active', isActive);
                 panel.toggleAttribute('hidden', !isActive);
               });
             }
           };
 
-          let activeIndex = tabs.findIndex((tab) => tab.classList.contains('is-active'));
+          let activeIndex = tabs.findIndex((tab) => tab.classList.contains('of-tab--active'));
           if (activeIndex < 0) activeIndex = 0;
 
           tabs.forEach((tab, index) => {

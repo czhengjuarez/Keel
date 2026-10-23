@@ -6,3 +6,7 @@ export interface BaseProps {
   className?: string;
   children?: unknown;
 }
+
+export type KeelBannerVariant = 'neutral' | 'info' | 'success' | 'warning' | 'danger';
+export type KeelToastVariant = 'default' | 'success';
+export type KeelTabsVariant = 'underline' | 'pills';

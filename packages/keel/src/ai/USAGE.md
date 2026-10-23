@@ -22,24 +22,38 @@ npm install @ops-forward/keel
 
 ```ts
 import '@ops-forward/keel/styles.css';
-import { buttonClass, badgeClass, cardClass, inputClass, fieldClass, labelClass, selectClass, textareaClass, switchRootClass } from '@ops-forward/keel';
+import { buttonClass, badgeClass, cardClass, inputClass, fieldClass, tabsClass, dialogClass } from '@ops-forward/keel';
+// every component has a {name}Class() helper — see the table below or run `npx keel ls`
 ```
 
 ## Component class table
 
-| Component | Helper | Base class | Key variants / modifiers |
-|-----------|--------|-----------|--------------------------|
-| Button | `buttonClass()` | `of-btn` | variant: `primary secondary ghost tint danger`; size: `sm md lg`; `disabled` |
-| Badge | `badgeClass()` | `of-badge` | variant: `green amber red blue purple default` |
-| Card | `cardClass()` | `of-card` | modifier: `of-card--brand-elevated` (white text, brand gradient) |
-| Input | `inputClass()` | `of-input` | use with `fieldClass()` `labelClass()` `hintClass()` `errorClass()` |
-| Field | `fieldClass()` | `of-field` | `invalid` → adds `of-field--error` |
-| Label | `labelClass()` | `of-label` | — |
-| Hint | `hintClass()` | `of-field__hint` | — |
-| Error | `errorClass()` | `of-field__error` | — |
-| Select | `selectClass()` | `of-select` | — |
-| Textarea | `textareaClass()` | `of-textarea` | — |
-| Switch | `switchRootClass()` | `of-switch` | parts: `of-switch__input` `of-switch__track` `of-switch__thumb` `of-switch__label` |
+<!-- registry:table:start -->
+| Component | Helper | Base class | Pattern |
+|-----------|--------|-----------|---------|
+| Button | `buttonClass()` | `of-btn` | `of-btn of-btn--{variant} of-btn--{size} [of-btn--disabled]` |
+| Badge | `badgeClass()` | `of-badge` | `of-badge of-badge--{variant}` |
+| Card | `cardClass()` | `of-card` | `of-card [of-card--brand-elevated]` |
+| Input | `inputClass()` `fieldClass()` `labelClass()` `hintClass()` `errorClass()` `fieldA11yIds()` | `of-input` | `of-input` |
+| Select | `selectClass()` | `of-select` | `of-select` |
+| Textarea | `textareaClass()` | `of-textarea` | `of-textarea` |
+| Switch | `switchRootClass()` | `of-switch` | `of-switch / of-switch__input / of-switch__track / of-switch__thumb / of-switch__label` |
+| Check | `checkClass()` | `of-check` | `of-check / of-check__input / of-check__label` |
+| Radio | `radioClass()` | `of-radio` | `of-radio / of-radio__input / of-radio__label` |
+| Banner | `bannerClass()` | `of-banner` | `of-banner of-banner--{variant}` |
+| Breadcrumbs | `breadcrumbsClass()` | `of-breadcrumbs` | `of-breadcrumbs` |
+| Link | `linkClass()` | `of-link` | `of-link` |
+| Empty State | `emptyClass()` | `of-empty` | `of-empty / of-empty__title / of-empty__body` |
+| Dialog | `dialogClass()` | `of-dialog` | `of-dialog / of-dialog__title / of-dialog__desc / of-dialog__actions` |
+| Toast | `toastClass()` | `of-toast` | `of-toast of-toast--{variant}` |
+| Popover | `popoverClass()` | `of-popover` | `of-popover / of-popover__title` |
+| Tooltip | `tooltipClass()` `tooltipAnchorClass()` | `of-tooltip` | `of-tooltip-anchor > of-tooltip` |
+| Loader | `loaderClass()` | `of-loader` | `of-loader of-loader--{size}` |
+| Skeleton | `skeletonClass()` | `of-skeleton` | `of-skeleton` |
+| Table | `tableClass()` | `of-table` | `of-table` |
+| Pagination | `paginationClass()` | `of-pagination` | `of-pagination` |
+| Tabs | `tabsClass()` `tabClass()` `tabPanelsClass()` `tabPanelClass()` | `of-tabs` | `of-tabs of-tabs--{variant}; of-tab [of-tab--active]; of-tab-panel [of-tab-panel--active]` |
+<!-- registry:table:end -->
 
 ## Common patterns
 

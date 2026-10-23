@@ -56,7 +56,7 @@ Rules:
 2. Define an `interface {Name}Options` with all variant/modifier props
 3. Export a `{name}Class()` function using the pattern above
 4. Re-export from `src/index.ts`
-5. Add an entry to `src/ai/component-registry.json`
+5. Add an entry to `scripts/registry-meta.mjs` and run `npm run registry:build` (regenerates `component-registry.json` and the USAGE.md table)
 
 ## Consuming this package
 
