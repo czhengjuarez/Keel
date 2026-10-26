@@ -42,22 +42,18 @@ buttonClass({ variant: 'primary', size: 'md' })
 // → "of-btn of-btn--primary of-btn--md"
 ```
 
-To publish a new version (until CI is set up):
+To publish a new version, GitHub Actions publishes with npm trusted publishing (`.github/workflows/publish.yml`); no npm token is needed:
 
-1. Bump `version` in `packages/keel/package.json`
-2. Run from the package directory:
-
-```bash
-cd packages/keel && npm publish --no-workspaces
-```
-
-`prepack` runs automatically: typecheck → tests → build → publish.
-
-Requires an npm token with write access to `@ops-forward` set in `~/.npmrc`:
+1. Bump `version` in `packages/keel/package.json` and push to `main`
+2. Tag the release with the same version and push the tag:
 
 ```bash
-echo "//registry.npmjs.org/:_authToken=YOUR_TOKEN" >> ~/.npmrc
+git tag keel-v0.2.0 && git push origin keel-v0.2.0
 ```
+
+The workflow checks the tag matches the version, runs the token, skill and registry checks, then `npm publish` (`prepack` runs typecheck → tests → build). You can also run it by hand from the Actions tab; it skips versions already on npm.
+
+The package's npm settings must list this repo as a trusted publisher (GitHub Actions, user `czhengjuarez`, repository `Keel`, workflow `publish.yml`). Long-lived tokens in `~/.npmrc` no longer work for publishing.
 
 ## Contributing to this repo (monorepo setup)
 

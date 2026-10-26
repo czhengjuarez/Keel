@@ -87,23 +87,18 @@ Full install and usage docs: `packages/keel/README.md` and https://keel.coscient
 
 ## Publishing a new version
 
-CI publish is not yet set up — publish manually until then:
+Publishing runs in GitHub Actions with npm trusted publishing (`.github/workflows/publish.yml`). There is no npm token.
 
-1. Bump `version` in `packages/keel/package.json`
-2. Run from the package directory:
-
-```bash
-cd packages/keel && npm publish --no-workspaces
-# prepack runs automatically: typecheck → test → build → publish
-```
-
-Requires an npm token with write access to `@ops-forward` in `~/.npmrc`:
+1. Bump `version` in `packages/keel/package.json` and push to `main`
+2. Push a matching tag:
 
 ```bash
-echo "//registry.npmjs.org/:_authToken=YOUR_TOKEN" >> ~/.npmrc
+git tag keel-v0.2.0 && git push origin keel-v0.2.0
+# workflow: tag/version check → tokens, skill, registry checks → npm publish (prepack: typecheck → test → build)
 ```
 
-Generate tokens at: npmjs.com → avatar → Access Tokens → Granular Access Token (Read and write, Bypass 2FA checked).
+- Agents NEVER run `npm publish` locally or add `_authToken` lines to `~/.npmrc`; 2FA-bypass tokens no longer work for publishing.
+- The workflow skips a version that is already on npm, so bump the version for every release.
 
 ## Commands
 

@@ -2,6 +2,11 @@
   "name": "@ops-forward/keel",
   "version": "0.2.0",
   "description": "Framework-agnostic class utilities for the Keel design system.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/czhengjuarez/Keel.git",
+    "directory": "packages/keel"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
