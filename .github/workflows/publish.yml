@@ -53,4 +53,4 @@ jobs:
       - name: Publish
         if: steps.published.outputs.exists != 'true'
         working-directory: packages/keel
-        run: npm publish --no-workspaces --access public --loglevel verbose
+        run: npm publish --no-workspaces --access public
