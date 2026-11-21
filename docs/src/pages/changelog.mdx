@@ -5,6 +5,13 @@ description: Release notes for the Ops Forward design system docs.
 eyebrow: Getting started
 ---
 
+## 2026-11-21 — @ops-forward/keel 0.2.1
+
+### Fixed
+
+- Dark mode: the packaged `styles.css` never declared `color-scheme`, so `light-dark()` tokens stayed light. It now sets `color-scheme: light dark` and supports the `data-mode="light|dark"` override.
+- Installation and home pages now document `@ops-forward/keel` (they referenced the unpublished `@ops-forward/ui`).
+
 ## 2026-10-22 — @ops-forward/keel 0.2.0
 
 ### Added

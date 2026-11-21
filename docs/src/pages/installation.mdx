@@ -7,32 +7,34 @@ eyebrow: Getting started
 
 ## Requirements
 
-Node 18 or later. The token system is plain CSS — no build step required. The React components need a bundler (Vite, Astro, Next.js, or similar).
+Node 18 or later. Keel is CSS plus framework-agnostic TypeScript class helpers: no React, no runtime dependencies, no build step required for the CSS.
 
 ## Install
 
 ```bash
-npm install @ops-forward/ui
+npm install @ops-forward/keel
 ```
 
 Or with pnpm:
 
 ```bash
-pnpm add @ops-forward/ui
+pnpm add @ops-forward/keel
 ```
 
-## Add the tokens
+This is the only Keel package on npm.
 
-Import the token stylesheet once at your project root:
+## Add the styles
 
-```tsx
-import '@ops-forward/ui/css/tokens.css';
+Import the stylesheet once at your app entry. It includes the design tokens and every component:
+
+```ts
+import '@ops-forward/keel/styles.css';
 ```
 
-Or link it directly from a CDN:
+Or link it directly from a CDN, pinning the version:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@ops-forward/ui/dist/tokens.css">
+<link rel="stylesheet" href="https://unpkg.com/@ops-forward/keel@0.2.1/src/styles.css">
 ```
 
 ## Load fonts
@@ -51,21 +53,33 @@ The system uses three typefaces. Add this to your HTML `<head>`:
 
 ## Use components
 
-Import individual components as needed:
-
-```tsx
-import { Button, Badge, Card } from '@ops-forward/ui';
-```
-
-Or use the CSS classes directly in any framework:
+Use the CSS classes directly in any framework:
 
 ```html
 <button class="of-btn of-btn--primary of-btn--md">Book a call</button>
 ```
 
+Or build the class strings with the TypeScript helpers:
+
+```ts
+import { buttonClass, badgeClass, cardClass } from '@ops-forward/keel';
+
+buttonClass({ variant: 'primary', size: 'md' }); // "of-btn of-btn--primary of-btn--md"
+```
+
+Look up any component's classes and options from the terminal, offline:
+
+```bash
+npx keel ls
+npx keel doc button
+npx keel check src/**/*.html   # flags invented of-* classes
+```
+
+AI agents can start from [/llms.txt](/llms.txt). Every docs page is also available as Markdown by appending `.md` to its URL.
+
 ## Dark mode
 
-The token system respects `prefers-color-scheme` automatically via CSS `color-scheme`. To let users override it, set `data-mode` on the root element:
+The stylesheet sets `color-scheme: light dark`, so tokens follow `prefers-color-scheme` automatically via CSS `light-dark()`. To let users override it, set `data-mode` on the root element:
 
 ```js
 document.documentElement.setAttribute('data-mode', 'dark');

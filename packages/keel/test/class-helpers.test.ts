@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -66,5 +68,13 @@ describe('class helpers', () => {
     expect(tabClass()).toBe('of-tab');
     expect(tabClass({ active: true })).toBe('of-tab of-tab--active');
     expect(tabPanelClass({ active: true })).toBe('of-tab-panel of-tab-panel--active');
+  });
+});
+
+describe('packaged tokens', () => {
+  it('declare color-scheme so light-dark() tokens switch, with data-mode overrides', () => {
+    const css = readFileSync(join(__dirname, '../src/tokens.css'), 'utf8');
+    expect(css).toContain('color-scheme: light dark;');
+    expect(css).toContain('[data-mode="dark"] { color-scheme: dark; }');
   });
 });
